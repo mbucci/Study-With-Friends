@@ -18,6 +18,8 @@
 		2AE2BDF017123993004BCBA5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AE2BDEF17123993004BCBA5 /* Default-568h@2x.png */; };
 		2AE2BDF317123993004BCBA5 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AE2BDF117123993004BCBA5 /* MainStoryboard.storyboard */; };
 		2AE2BDF617123993004BCBA5 /* StudyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2BDF517123993004BCBA5 /* StudyViewController.m */; };
+		7D7375081718A413007BC02D /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7375071718A413007BC02D /* Login.m */; };
+		7D73750E171B3EDA007BC02D /* StudyWithFriendsBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D73750D171B3EDA007BC02D /* StudyWithFriendsBackground.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,9 @@
 		2AE2BDF217123993004BCBA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		2AE2BDF417123993004BCBA5 /* StudyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudyViewController.h; sourceTree = "<group>"; };
 		2AE2BDF517123993004BCBA5 /* StudyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StudyViewController.m; sourceTree = "<group>"; };
+		7D7375061718A413007BC02D /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
+		7D7375071718A413007BC02D /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
+		7D73750D171B3EDA007BC02D /* StudyWithFriendsBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StudyWithFriendsBackground.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +93,8 @@
 				2AE2BDF117123993004BCBA5 /* MainStoryboard.storyboard */,
 				2AE2BDF417123993004BCBA5 /* StudyViewController.h */,
 				2AE2BDF517123993004BCBA5 /* StudyViewController.m */,
+				7D7375061718A413007BC02D /* Login.h */,
+				7D7375071718A413007BC02D /* Login.m */,
 				2AE2BDE017123993004BCBA5 /* Supporting Files */,
 			);
 			path = "Study With Friends";
@@ -96,6 +103,7 @@
 		2AE2BDE017123993004BCBA5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7D73750D171B3EDA007BC02D /* StudyWithFriendsBackground.png */,
 				2AE2BDE117123993004BCBA5 /* Study With Friends-Info.plist */,
 				2AE2BDE217123993004BCBA5 /* InfoPlist.strings */,
 				2AE2BDE517123993004BCBA5 /* main.m */,
@@ -164,6 +172,7 @@
 				2AE2BDEE17123993004BCBA5 /* Default@2x.png in Resources */,
 				2AE2BDF017123993004BCBA5 /* Default-568h@2x.png in Resources */,
 				2AE2BDF317123993004BCBA5 /* MainStoryboard.storyboard in Resources */,
+				7D73750E171B3EDA007BC02D /* StudyWithFriendsBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +186,7 @@
 				2AE2BDE617123993004BCBA5 /* main.m in Sources */,
 				2AE2BDEA17123993004BCBA5 /* StudyAppDelegate.m in Sources */,
 				2AE2BDF617123993004BCBA5 /* StudyViewController.m in Sources */,
+				7D7375081718A413007BC02D /* Login.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +309,7 @@
 				2AE2BDFB17123993004BCBA5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

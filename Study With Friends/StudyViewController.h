@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Login.h"
 
 @interface StudyViewController : UIViewController
+
+- (IBAction)newLogin:(id)sender;
 
 @end
