@@ -32,7 +32,6 @@
 
 - (void)addToDictionaryUsername:(NSString *)username andPassword:(NSString *)password
 {
-    NSLog(@"yo");
     NSArray *newUsername = [[NSArray alloc] initWithObjects:username, nil];
     NSArray *newPassword = [[NSArray alloc] initWithObjects:password, nil];
     NSDictionary *tempDictionary = [[NSDictionary alloc] initWithObjects:newPassword forKeys:newUsername];
@@ -40,11 +39,9 @@
 }
 
 
-+ (BOOL)checkLoginForUsername:(NSString *)userName andPassword:(NSString *)password
+- (BOOL)checkLoginForUsername:(NSString *)userName andPassword:(NSString *)password
 {
-    Login *login = [[Login alloc]init];
-    
-    if ([password isEqual:[login.loginInfo objectForKey:userName]]) {
+    if ([password isEqual:[self.loginInfo objectForKey:userName]]) {
         return YES;
     } else {
         return NO;
