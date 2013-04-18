@@ -10,23 +10,35 @@
 
 @interface Login()
 
-@property (nonatomic, strong) NSMutableDictionary *loginInfo;
+@property (nonatomic, strong) NSMutableDictionary *studentLoginInfo;
+@property (nonatomic, strong) NSMutableDictionary *teacherLoginInfo;
 
 @end
 
 @implementation Login
 
-@synthesize loginInfo = _loginInfo;
+@synthesize studentLoginInfo = _studentLoginInfo;
+@synthesize teacherLoginInfo = _teacherLoginInfo;
 
 
-- (NSMutableDictionary *)loginInfo
+- (NSMutableDictionary *)studentLoginInfo
 {
-    if (!_loginInfo) {
+    if (!_studentLoginInfo) {
         NSArray *userNames = [[NSArray alloc] initWithObjects:@"mbucci", @"syounes", nil];
         NSArray *passwords = [[NSArray alloc] initWithObjects:@"123", @"456", nil];
-        _loginInfo = [[NSMutableDictionary alloc] initWithObjects:passwords forKeys:userNames];
+        _studentLoginInfo = [[NSMutableDictionary alloc] initWithObjects:passwords forKeys:userNames];
     }
-    return _loginInfo;
+    return _studentLoginInfo;
+}
+
+- (NSMutableDictionary *)teacherLoginInfo
+{
+    if (!_teacherLoginInfo) {
+        NSArray *userNames = [[NSArray alloc] initWithObjects:@"apensava", nil];
+        NSArray *passwords = [[NSArray alloc] initWithObjects:@"789", nil];
+        _teacherLoginInfo = [[NSMutableDictionary alloc] initWithObjects:passwords forKeys:userNames];
+    }
+    return _teacherLoginInfo;
 }
 
 
@@ -35,18 +47,28 @@
     NSArray *newUsername = [[NSArray alloc] initWithObjects:username, nil];
     NSArray *newPassword = [[NSArray alloc] initWithObjects:password, nil];
     NSDictionary *tempDictionary = [[NSDictionary alloc] initWithObjects:newPassword forKeys:newUsername];
-    [self.loginInfo addEntriesFromDictionary:tempDictionary];
+    [self.studentLoginInfo addEntriesFromDictionary:tempDictionary];
 }
 
 
-- (BOOL)checkLoginForUsername:(NSString *)userName andPassword:(NSString *)password
+- (BOOL)checkLoginForUsername:(NSString *)userName andPassword:(NSString *)password forCredentials:(NSString *)creds
 {
-    if ([password isEqual:[self.loginInfo objectForKey:userName]]) {
-        return YES;
-    } else {
-        return NO;
+    if ([creds isEqualToString:@"Student"]) {
+        if ([password isEqual:[self.studentLoginInfo objectForKey:userName]]) {
+            return YES;
+        } else {
+            return NO;
+        }
     }
-                    
+    
+    if ([creds isEqualToString:@"Teacher"]) {
+        if ([password isEqual:[self.teacherLoginInfo objectForKey:userName]]) {
+            return YES;
+        } else {
+            return NO;
+        }
+    }
+    return NO;
 }
 
 @end

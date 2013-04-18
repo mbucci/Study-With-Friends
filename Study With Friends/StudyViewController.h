@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Login.h"
+#import "CoursesTableViewController.h"
 
 @interface StudyViewController : UIViewController
 

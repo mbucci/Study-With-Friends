@@ -18,8 +18,9 @@
 		2AE2BDF017123993004BCBA5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AE2BDEF17123993004BCBA5 /* Default-568h@2x.png */; };
 		2AE2BDF317123993004BCBA5 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AE2BDF117123993004BCBA5 /* MainStoryboard.storyboard */; };
 		2AE2BDF617123993004BCBA5 /* StudyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2BDF517123993004BCBA5 /* StudyViewController.m */; };
+		7D1AFF8C171F6EFF001FA407 /* GamesAndCourses.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D1AFF8A171F6EFF001FA407 /* GamesAndCourses.xcdatamodeld */; };
 		7D7375081718A413007BC02D /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7375071718A413007BC02D /* Login.m */; };
-		7D73750E171B3EDA007BC02D /* StudyWithFriendsBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D73750D171B3EDA007BC02D /* StudyWithFriendsBackground.png */; };
+		7DAB3BC1171D969100766B06 /* CoursesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DAB3BC0171D969100766B06 /* CoursesTableViewController.m */; };
 		7DE75E53171CBBCA00B6A335 /* StudyWithFriendsBackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DE75E52171CBBC900B6A335 /* StudyWithFriendsBackground2.png */; };
 /* End PBXBuildFile section */
 
@@ -40,9 +41,11 @@
 		2AE2BDF217123993004BCBA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		2AE2BDF417123993004BCBA5 /* StudyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudyViewController.h; sourceTree = "<group>"; };
 		2AE2BDF517123993004BCBA5 /* StudyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StudyViewController.m; sourceTree = "<group>"; };
+		7D1AFF8B171F6EFF001FA407 /* GamesAndCourses.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GamesAndCourses.xcdatamodel; sourceTree = "<group>"; };
 		7D7375061718A413007BC02D /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
 		7D7375071718A413007BC02D /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
-		7D73750D171B3EDA007BC02D /* StudyWithFriendsBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StudyWithFriendsBackground.png; sourceTree = "<group>"; };
+		7DAB3BBF171D969100766B06 /* CoursesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoursesTableViewController.h; sourceTree = "<group>"; };
+		7DAB3BC0171D969100766B06 /* CoursesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoursesTableViewController.m; sourceTree = "<group>"; };
 		7DE75E52171CBBC900B6A335 /* StudyWithFriendsBackground2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StudyWithFriendsBackground2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,8 +98,11 @@
 				2AE2BDF117123993004BCBA5 /* MainStoryboard.storyboard */,
 				2AE2BDF417123993004BCBA5 /* StudyViewController.h */,
 				2AE2BDF517123993004BCBA5 /* StudyViewController.m */,
+				7DAB3BBF171D969100766B06 /* CoursesTableViewController.h */,
+				7DAB3BC0171D969100766B06 /* CoursesTableViewController.m */,
 				7D7375061718A413007BC02D /* Login.h */,
 				7D7375071718A413007BC02D /* Login.m */,
+				7D1AFF8A171F6EFF001FA407 /* GamesAndCourses.xcdatamodeld */,
 				2AE2BDE017123993004BCBA5 /* Supporting Files */,
 			);
 			path = "Study With Friends";
@@ -106,7 +112,6 @@
 			isa = PBXGroup;
 			children = (
 				7DE75E52171CBBC900B6A335 /* StudyWithFriendsBackground2.png */,
-				7D73750D171B3EDA007BC02D /* StudyWithFriendsBackground.png */,
 				2AE2BDE117123993004BCBA5 /* Study With Friends-Info.plist */,
 				2AE2BDE217123993004BCBA5 /* InfoPlist.strings */,
 				2AE2BDE517123993004BCBA5 /* main.m */,
@@ -175,7 +180,6 @@
 				2AE2BDEE17123993004BCBA5 /* Default@2x.png in Resources */,
 				2AE2BDF017123993004BCBA5 /* Default-568h@2x.png in Resources */,
 				2AE2BDF317123993004BCBA5 /* MainStoryboard.storyboard in Resources */,
-				7D73750E171B3EDA007BC02D /* StudyWithFriendsBackground.png in Resources */,
 				7DE75E53171CBBCA00B6A335 /* StudyWithFriendsBackground2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,6 +195,8 @@
 				2AE2BDEA17123993004BCBA5 /* StudyAppDelegate.m in Sources */,
 				2AE2BDF617123993004BCBA5 /* StudyViewController.m in Sources */,
 				7D7375081718A413007BC02D /* Login.m in Sources */,
+				7DAB3BC1171D969100766B06 /* CoursesTableViewController.m in Sources */,
+				7D1AFF8C171F6EFF001FA407 /* GamesAndCourses.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +322,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7D1AFF8A171F6EFF001FA407 /* GamesAndCourses.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7D1AFF8B171F6EFF001FA407 /* GamesAndCourses.xcdatamodel */,
+			);
+			currentVersion = 7D1AFF8B171F6EFF001FA407 /* GamesAndCourses.xcdatamodel */;
+			name = GamesAndCourses.xcdatamodeld;
+			path = ../GamesAndCourses.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2AE2BDCE17123993004BCBA5 /* Project object */;
 }
