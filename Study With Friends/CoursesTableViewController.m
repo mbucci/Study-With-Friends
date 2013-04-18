@@ -14,11 +14,12 @@
 
 @implementation CoursesTableViewController
 
+@synthesize segueType = _segueType;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -26,6 +27,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:NO];
+    UINavigationItem *item = [self.navigationController.navigationBar.items lastObject];
+    item.title = @"Courses";
+    [item setHidesBackButton:YES];
+    item.leftBarButtonItem = self.editButtonItem;
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -44,24 +50,48 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return 1;
 }
+
+
+- (NSString *)titleForRow:(NSUInteger)row
+{
+    //return [self.photos[row][FLICKR_PHOTO_TITLE] description];
+}
+
+- (NSString *)subtitleForRow:(NSUInteger)row
+{
+    //return [self.photos[row][FLICKR_PHOTO_OWNER] description];
+}
+
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"Math 181";
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    NSLog(@"yo");
+    static NSString *CellIdentifier = @"Courses";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    
+    cell.textLabel.text = @"Derivatives";
+    
+    if ([self.segueType isEqualToString:@"Student"]){
+        cell.detailTextLabel.text = @"4/5 Correct";
+    }
+    if ([self.segueType isEqualToString:@"Teacher"]){
+        cell.detailTextLabel.text = @"Edit";
+    }
     
     return cell;
 }

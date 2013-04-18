@@ -10,4 +10,6 @@
 
 @interface CoursesTableViewController : UITableViewController
 
+@property (nonatomic, weak) NSString *segueType;
+
 @end
