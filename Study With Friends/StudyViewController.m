@@ -98,7 +98,8 @@
 }
 
 
-- (IBAction)newLogin:(id)sender {
+- (IBAction)newLogin:(id)sender
+{
     [self.loginCheck addToDictionaryUsername:self.username.text andPassword:self.password.text];
 }
 @end

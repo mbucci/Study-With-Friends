@@ -46,6 +46,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([sender isKindOfClass:[UITableViewCell class] ]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        if (indexPath) {
+            
+        }
+    }
+}
+
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    return YES;
+}
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -79,7 +97,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"yo");
     static NSString *CellIdentifier = @"Courses";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
@@ -95,6 +112,16 @@
     
     return cell;
 }
+
+- (IBAction)unwindOnSelection:(UIStoryboardSegue *)segue
+{
+    if ([segue.sourceViewController isKindOfClass:[ResultsViewController class]]) {
+        ResultsViewController *RVC = [[ResultsViewController alloc]init];
+        RVC = segue.sourceViewController;
+    }
+    
+}
+
 
 /*
 // Override to support conditional editing of the table view.

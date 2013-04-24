@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ResultsViewController.h"
+#import "GameViewController.h"
 
 @interface CoursesTableViewController : UITableViewController
 
 @property (nonatomic, weak) NSString *segueType;
+
 
 @end

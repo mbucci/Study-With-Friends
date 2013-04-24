@@ -38,10 +38,10 @@
 {
     [super viewDidLoad];
 
-    
+    [self.navigationController setNavigationBarHidden:NO];
 	// Do any additional setup after loading the view.
     self.navigationItem.hidesBackButton = YES;
-    NSString *gameOver = [NSString stringWithFormat:@"You completed the %@ quiz! You got %i/%i correct!", self.gamePlayed.title, [self.gamePlayed getAmountCorrect: self.userAnswers], self.gamePlayed.amtQuestions];
+    NSString *gameOver = [NSString stringWithFormat:@"You completed the %@ quiz! You got %i/%i correct!", self.gamePlayed.title, [self.gamePlayed getAmountCorrect:self.userAnswers], self.gamePlayed.amtQuestions];
     
     self.gameCompletedDisplay.text = gameOver;
     
@@ -66,6 +66,7 @@
         [questionsDisplay addSubview: question];
     }
 }
+
 
 - (void)didReceiveMemoryWarning
 {

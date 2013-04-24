@@ -33,6 +33,7 @@ int mainInt;
 int questionNumber;
 BOOL inGame;
 BOOL gamePaused;
+BOOL gameover = FALSE;
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     ResultsViewController *RVC = [segue destinationViewController];
@@ -183,12 +184,19 @@ BOOL gamePaused;
 
 - (IBAction)swipeBack:(UISwipeGestureRecognizer *)sender {
     //if user has hit start...
-    if(inGame){
+    if(inGame && !gameover){
         //user cannot hit back on question 1
-        if( questionNumber > 1) {
+        if(questionNumber > 1) {
             //moves back a question
             questionNumber = questionNumber - 1;
             [self changeQuestionsAndAnswers: questionNumber];
+            
+            if (sender.state == UIGestureRecognizerStateEnded) {
+                [UIView beginAnimations:nil context:NULL];
+                [UIView setAnimationDuration:0.55];
+                [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.view cache:YES];
+                [UIView commitAnimations];
+            }
             
             //highlights appropriate button
             if(answers) {
@@ -210,12 +218,18 @@ BOOL gamePaused;
 
 - (IBAction)swipeNext:(UISwipeGestureRecognizer *)sender {
     //if user has hit start
-    if(inGame) {
+    if(inGame && !gameover) {
         //user cannot hit next on final question
         if( questionNumber < self.game.amtQuestions) {
             questionNumber = questionNumber + 1;
             [self changeQuestionsAndAnswers: questionNumber];
             
+            if (sender.state == UIGestureRecognizerStateEnded) {
+                [UIView beginAnimations:nil context:NULL];
+                [UIView setAnimationDuration:0.55];
+                [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
+                [UIView commitAnimations];
+            }
             //highlight appropriate button
             if(answers) {
                 NSString *answerPicked = [answers objectAtIndex:questionNumber-1];
@@ -231,7 +245,6 @@ BOOL gamePaused;
             }
         }
     }
-
 }
 
 
@@ -241,8 +254,7 @@ BOOL gamePaused;
         //set boolean for game true
         inGame = TRUE;
     
-
-    
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
         //display questions and answers
         questionNumber = 1;
         [self changeQuestionsAndAnswers: questionNumber];
@@ -327,13 +339,12 @@ BOOL gamePaused;
     self.eOption.text = eAnswer;
     
 }
+
 -(void) endGame {
+    
+    gameover = TRUE;
     [timer invalidate];
-    
-    int amountCorrect = [self.game getAmountCorrect:self.answers];
-    
     [self performSegueWithIdentifier:@"results" sender:self];
-    
     
 }
 

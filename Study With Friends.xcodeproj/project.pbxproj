@@ -16,11 +16,16 @@
 		2AE2BDEC17123993004BCBA5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AE2BDEB17123993004BCBA5 /* Default.png */; };
 		2AE2BDEE17123993004BCBA5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AE2BDED17123993004BCBA5 /* Default@2x.png */; };
 		2AE2BDF017123993004BCBA5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AE2BDEF17123993004BCBA5 /* Default-568h@2x.png */; };
-		2AE2BDF317123993004BCBA5 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AE2BDF117123993004BCBA5 /* MainStoryboard.storyboard */; };
 		2AE2BDF617123993004BCBA5 /* StudyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2BDF517123993004BCBA5 /* StudyViewController.m */; };
+		7D05C0471728676500B59E35 /* StudyStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D05C0461728676500B59E35 /* StudyStoryBoard.storyboard */; };
 		7D1AFF8C171F6EFF001FA407 /* GamesAndCourses.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D1AFF8A171F6EFF001FA407 /* GamesAndCourses.xcdatamodeld */; };
 		7D7375081718A413007BC02D /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7375071718A413007BC02D /* Login.m */; };
 		7DAB3BC1171D969100766B06 /* CoursesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DAB3BC0171D969100766B06 /* CoursesTableViewController.m */; };
+		7DE25749172863A00076058E /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE25746172863A00076058E /* Game.m */; };
+		7DE2574A172863A00076058E /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE25748172863A00076058E /* GameViewController.m */; };
+		7DE25751172863B00076058E /* pauseButton.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7DE2574C172863B00076058E /* pauseButton.jpg */; };
+		7DE25752172863B00076058E /* playButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DE2574D172863B00076058E /* playButton.png */; };
+		7DE25753172863B00076058E /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE2574F172863B00076058E /* ResultsViewController.m */; };
 		7DE75E53171CBBCA00B6A335 /* StudyWithFriendsBackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DE75E52171CBBC900B6A335 /* StudyWithFriendsBackground2.png */; };
 /* End PBXBuildFile section */
 
@@ -38,14 +43,22 @@
 		2AE2BDEB17123993004BCBA5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		2AE2BDED17123993004BCBA5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		2AE2BDEF17123993004BCBA5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		2AE2BDF217123993004BCBA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		2AE2BDF417123993004BCBA5 /* StudyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudyViewController.h; sourceTree = "<group>"; };
 		2AE2BDF517123993004BCBA5 /* StudyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StudyViewController.m; sourceTree = "<group>"; };
+		7D05C0461728676500B59E35 /* StudyStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = StudyStoryBoard.storyboard; path = ../StudyStoryBoard.storyboard; sourceTree = "<group>"; };
 		7D1AFF8B171F6EFF001FA407 /* GamesAndCourses.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GamesAndCourses.xcdatamodel; sourceTree = "<group>"; };
 		7D7375061718A413007BC02D /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
 		7D7375071718A413007BC02D /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
 		7DAB3BBF171D969100766B06 /* CoursesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoursesTableViewController.h; sourceTree = "<group>"; };
 		7DAB3BC0171D969100766B06 /* CoursesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoursesTableViewController.m; sourceTree = "<group>"; };
+		7DE25745172863A00076058E /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		7DE25746172863A00076058E /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		7DE25747172863A00076058E /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		7DE25748172863A00076058E /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		7DE2574C172863B00076058E /* pauseButton.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pauseButton.jpg; sourceTree = "<group>"; };
+		7DE2574D172863B00076058E /* playButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playButton.png; sourceTree = "<group>"; };
+		7DE2574E172863B00076058E /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
+		7DE2574F172863B00076058E /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
 		7DE75E52171CBBC900B6A335 /* StudyWithFriendsBackground2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StudyWithFriendsBackground2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,13 +106,19 @@
 		2AE2BDDF17123993004BCBA5 /* Study With Friends */ = {
 			isa = PBXGroup;
 			children = (
+				7D05C0461728676500B59E35 /* StudyStoryBoard.storyboard */,
 				2AE2BDE817123993004BCBA5 /* StudyAppDelegate.h */,
 				2AE2BDE917123993004BCBA5 /* StudyAppDelegate.m */,
-				2AE2BDF117123993004BCBA5 /* MainStoryboard.storyboard */,
 				2AE2BDF417123993004BCBA5 /* StudyViewController.h */,
 				2AE2BDF517123993004BCBA5 /* StudyViewController.m */,
 				7DAB3BBF171D969100766B06 /* CoursesTableViewController.h */,
 				7DAB3BC0171D969100766B06 /* CoursesTableViewController.m */,
+				7DE25747172863A00076058E /* GameViewController.h */,
+				7DE25748172863A00076058E /* GameViewController.m */,
+				7DE2574E172863B00076058E /* ResultsViewController.h */,
+				7DE2574F172863B00076058E /* ResultsViewController.m */,
+				7DE25745172863A00076058E /* Game.h */,
+				7DE25746172863A00076058E /* Game.m */,
 				7D7375061718A413007BC02D /* Login.h */,
 				7D7375071718A413007BC02D /* Login.m */,
 				7D1AFF8A171F6EFF001FA407 /* GamesAndCourses.xcdatamodeld */,
@@ -111,6 +130,8 @@
 		2AE2BDE017123993004BCBA5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7DE2574C172863B00076058E /* pauseButton.jpg */,
+				7DE2574D172863B00076058E /* playButton.png */,
 				7DE75E52171CBBC900B6A335 /* StudyWithFriendsBackground2.png */,
 				2AE2BDE117123993004BCBA5 /* Study With Friends-Info.plist */,
 				2AE2BDE217123993004BCBA5 /* InfoPlist.strings */,
@@ -179,8 +200,10 @@
 				2AE2BDEC17123993004BCBA5 /* Default.png in Resources */,
 				2AE2BDEE17123993004BCBA5 /* Default@2x.png in Resources */,
 				2AE2BDF017123993004BCBA5 /* Default-568h@2x.png in Resources */,
-				2AE2BDF317123993004BCBA5 /* MainStoryboard.storyboard in Resources */,
 				7DE75E53171CBBCA00B6A335 /* StudyWithFriendsBackground2.png in Resources */,
+				7DE25751172863B00076058E /* pauseButton.jpg in Resources */,
+				7DE25752172863B00076058E /* playButton.png in Resources */,
+				7D05C0471728676500B59E35 /* StudyStoryBoard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +220,9 @@
 				7D7375081718A413007BC02D /* Login.m in Sources */,
 				7DAB3BC1171D969100766B06 /* CoursesTableViewController.m in Sources */,
 				7D1AFF8C171F6EFF001FA407 /* GamesAndCourses.xcdatamodeld in Sources */,
+				7DE25749172863A00076058E /* Game.m in Sources */,
+				7DE2574A172863A00076058E /* GameViewController.m in Sources */,
+				7DE25753172863B00076058E /* ResultsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,14 +235,6 @@
 				2AE2BDE317123993004BCBA5 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		2AE2BDF117123993004BCBA5 /* MainStoryboard.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2AE2BDF217123993004BCBA5 /* en */,
-			);
-			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -284,7 +302,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Study With Friends/Study With Friends-Prefix.pch";
 				INFOPLIST_FILE = "Study With Friends/Study With Friends-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -295,7 +315,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Study With Friends/Study With Friends-Prefix.pch";
 				INFOPLIST_FILE = "Study With Friends/Study With Friends-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
