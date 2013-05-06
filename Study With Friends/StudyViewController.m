@@ -3,6 +3,7 @@
 //  Study With Friends
 //
 //  Created by Sharif Younes on 4/7/13.
+//  Modifield by Max Bucci on 4/11/13
 //  Copyright (c) 2013 Sharif Younes. All rights reserved.
 //
 

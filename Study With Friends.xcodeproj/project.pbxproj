@@ -19,7 +19,9 @@
 		2AE2BDF617123993004BCBA5 /* StudyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2BDF517123993004BCBA5 /* StudyViewController.m */; };
 		7D05C0471728676500B59E35 /* StudyStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D05C0461728676500B59E35 /* StudyStoryBoard.storyboard */; };
 		7D1AFF8C171F6EFF001FA407 /* GamesAndCourses.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D1AFF8A171F6EFF001FA407 /* GamesAndCourses.xcdatamodeld */; };
+		7D3F9E6417297BBF009C969B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3F9E6317297BBF009C969B /* CoreData.framework */; };
 		7D7375081718A413007BC02D /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7375071718A413007BC02D /* Login.m */; };
+		7DA186EE173831EF00762EDC /* StudyGames.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DA186ED173831EF00762EDC /* StudyGames.m */; };
 		7DAB3BC1171D969100766B06 /* CoursesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DAB3BC0171D969100766B06 /* CoursesTableViewController.m */; };
 		7DE25749172863A00076058E /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE25746172863A00076058E /* Game.m */; };
 		7DE2574A172863A00076058E /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE25748172863A00076058E /* GameViewController.m */; };
@@ -47,8 +49,11 @@
 		2AE2BDF517123993004BCBA5 /* StudyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StudyViewController.m; sourceTree = "<group>"; };
 		7D05C0461728676500B59E35 /* StudyStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = StudyStoryBoard.storyboard; path = ../StudyStoryBoard.storyboard; sourceTree = "<group>"; };
 		7D1AFF8B171F6EFF001FA407 /* GamesAndCourses.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GamesAndCourses.xcdatamodel; sourceTree = "<group>"; };
+		7D3F9E6317297BBF009C969B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7D7375061718A413007BC02D /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
 		7D7375071718A413007BC02D /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
+		7DA186EC173831EF00762EDC /* StudyGames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudyGames.h; sourceTree = "<group>"; };
+		7DA186ED173831EF00762EDC /* StudyGames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudyGames.m; sourceTree = "<group>"; };
 		7DAB3BBF171D969100766B06 /* CoursesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoursesTableViewController.h; sourceTree = "<group>"; };
 		7DAB3BC0171D969100766B06 /* CoursesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoursesTableViewController.m; sourceTree = "<group>"; };
 		7DE25745172863A00076058E /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
@@ -67,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D3F9E6417297BBF009C969B /* CoreData.framework in Frameworks */,
 				2AE2BDDA17123993004BCBA5 /* UIKit.framework in Frameworks */,
 				2AE2BDDC17123993004BCBA5 /* Foundation.framework in Frameworks */,
 				2AE2BDDE17123993004BCBA5 /* CoreGraphics.framework in Frameworks */,
@@ -96,6 +102,7 @@
 		2AE2BDD817123993004BCBA5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7D3F9E6317297BBF009C969B /* CoreData.framework */,
 				2AE2BDD917123993004BCBA5 /* UIKit.framework */,
 				2AE2BDDB17123993004BCBA5 /* Foundation.framework */,
 				2AE2BDDD17123993004BCBA5 /* CoreGraphics.framework */,
@@ -107,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				7D05C0461728676500B59E35 /* StudyStoryBoard.storyboard */,
+				7D1AFF8A171F6EFF001FA407 /* GamesAndCourses.xcdatamodeld */,
 				2AE2BDE817123993004BCBA5 /* StudyAppDelegate.h */,
 				2AE2BDE917123993004BCBA5 /* StudyAppDelegate.m */,
 				2AE2BDF417123993004BCBA5 /* StudyViewController.h */,
@@ -117,11 +125,12 @@
 				7DE25748172863A00076058E /* GameViewController.m */,
 				7DE2574E172863B00076058E /* ResultsViewController.h */,
 				7DE2574F172863B00076058E /* ResultsViewController.m */,
+				7DA186EC173831EF00762EDC /* StudyGames.h */,
+				7DA186ED173831EF00762EDC /* StudyGames.m */,
 				7DE25745172863A00076058E /* Game.h */,
 				7DE25746172863A00076058E /* Game.m */,
 				7D7375061718A413007BC02D /* Login.h */,
 				7D7375071718A413007BC02D /* Login.m */,
-				7D1AFF8A171F6EFF001FA407 /* GamesAndCourses.xcdatamodeld */,
 				2AE2BDE017123993004BCBA5 /* Supporting Files */,
 			);
 			path = "Study With Friends";
@@ -223,6 +232,7 @@
 				7DE25749172863A00076058E /* Game.m in Sources */,
 				7DE2574A172863A00076058E /* GameViewController.m in Sources */,
 				7DE25753172863B00076058E /* ResultsViewController.m in Sources */,
+				7DA186EE173831EF00762EDC /* StudyGames.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

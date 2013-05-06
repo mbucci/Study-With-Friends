@@ -234,7 +234,7 @@
             </objects>
             <point key="canvasLocation" x="1209" y="-397"/>
         </scene>
-        <!--Game View Controller - Title-->
+        <!--Game View Controller - Game-->
         <scene sceneID="a51-xU-UJv">
             <objects>
                 <viewController id="04D-cZ-kx8" customClass="GameViewController" sceneMemberID="viewController">
@@ -427,7 +427,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="ENR-wE-JcA" firstAttribute="leading" secondItem="X6Z-Bh-x5z" secondAttribute="leading" constant="92" id="0Wy-Gp-URC"/>
@@ -480,7 +480,7 @@
                             <outletCollection property="gestureRecognizers" destination="sge-Ti-7wQ" appends="YES" id="i2d-fV-IrV"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="kNN-I6-pij"/>
+                    <navigationItem key="navigationItem" title="Game" id="kNN-I6-pij"/>
                     <connections>
                         <outlet property="aButton" destination="2Uy-Qd-f0r" id="iNV-Je-o2P"/>
                         <outlet property="aOption" destination="ENR-wE-JcA" id="sr8-ZU-pFN"/>
@@ -499,12 +499,12 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Erb-Tg-fIK" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="left" id="Hkb-TY-Sme">
+                <swipeGestureRecognizer direction="up" id="Hkb-TY-Sme">
                     <connections>
                         <action selector="swipeNext:" destination="04D-cZ-kx8" id="iQl-CC-K22"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="right" id="sge-Ti-7wQ">
+                <swipeGestureRecognizer direction="down" id="sge-Ti-7wQ">
                     <connections>
                         <action selector="swipeBack:" destination="04D-cZ-kx8" id="ayW-33-fff"/>
                     </connections>
@@ -544,7 +544,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="uaS-UK-Val" firstAttribute="top" secondItem="Tfd-nD-zyE" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="01a-69-D1n"/>
                             <constraint firstItem="Tfd-nD-zyE" firstAttribute="leading" secondItem="Ldz-uD-JXx" secondAttribute="leading" type="default" id="0NG-Bc-KWl"/>
@@ -572,54 +572,6 @@
         <image name="StudyWithFriendsBackground2.png" width="1800" height="2400"/>
         <image name="pauseButton.jpg" width="676" height="676"/>
     </resources>
-    <classes>
-        <class className="CoursesTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CoursesTableViewController.h"/>
-        </class>
-        <class className="GameViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="answerPressed:" candidateClass="UIButton"/>
-                <relationship kind="action" name="endPressed:" candidateClass="UIButton"/>
-                <relationship kind="action" name="pausePressed:" candidateClass="UIButton"/>
-                <relationship kind="action" name="startPressed:" candidateClass="UIButton"/>
-                <relationship kind="action" name="swipeBack:" candidateClass="UISwipeGestureRecognizer"/>
-                <relationship kind="action" name="swipeNext:" candidateClass="UISwipeGestureRecognizer"/>
-                <relationship kind="outlet" name="aButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="aOption" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="bButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="bOption" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="cButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="cOption" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="dOption" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="eButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="eOption" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="questionNumberDisplay" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="questionTextDisplay" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="timeDisplay" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ResultsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ResultsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="gameCompletedDisplay" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="questionsDisplay" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="StudyViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StudyViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="newLogin:"/>
-                <relationship kind="outlet" name="loginLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="username" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

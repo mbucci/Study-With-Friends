@@ -15,6 +15,7 @@
 @implementation CoursesTableViewController
 
 @synthesize segueType = _segueType;
+@synthesize gamesArray = _gamesArray;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -24,10 +25,18 @@
     return self;
 }
 
+-(StudyGames *)gamesArray
+{
+    if (!_gamesArray) {
+        _gamesArray = [[StudyGames alloc]init];
+    }
+    return _gamesArray;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     UINavigationItem *item = [self.navigationController.navigationBar.items lastObject];
     item.title = @"Courses";
     [item setHidesBackButton:YES];
@@ -52,7 +61,11 @@
     if ([sender isKindOfClass:[UITableViewCell class] ]) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         if (indexPath) {
-            
+            if ([segue.destinationViewController isKindOfClass:[GameViewController class]]) {
+                GameViewController *GVC = segue.destinationViewController;
+                GVC.gameDelegate = [self.gamesArray getGameForIndex:indexPath.row];
+
+            }
         }
     }
 }
@@ -62,6 +75,8 @@
 {
     return YES;
 }
+
+
 
 
 #pragma mark - Table view data source
@@ -80,12 +95,13 @@
 
 - (NSString *)titleForRow:(NSUInteger)row
 {
-    //return [self.photos[row][FLICKR_PHOTO_TITLE] description];
+    Game *temp = [self.gamesArray getGameForIndex:row];
+    return temp.title;
 }
 
 - (NSString *)subtitleForRow:(NSUInteger)row
 {
-    //return [self.photos[row][FLICKR_PHOTO_OWNER] description];
+    return [self.gamesArray getPercentageForIndex:row];
 }
 
 
@@ -101,10 +117,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     
-    cell.textLabel.text = @"Derivatives";
+    cell.textLabel.text = [self titleForRow:indexPath.row];
     
     if ([self.segueType isEqualToString:@"Student"]){
-        cell.detailTextLabel.text = @"4/5 Correct";
+        cell.detailTextLabel.text = [self subtitleForRow:indexPath.row];
     }
     if ([self.segueType isEqualToString:@"Teacher"]){
         cell.detailTextLabel.text = @"Edit";

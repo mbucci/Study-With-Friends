@@ -14,8 +14,6 @@
 
 @end
 
-
-
 @implementation ResultsViewController
 
 #define QUESTION_HEIGHT 220.0
@@ -38,7 +36,7 @@
 {
     [super viewDidLoad];
 
-    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 	// Do any additional setup after loading the view.
     self.navigationItem.hidesBackButton = YES;
     NSString *gameOver = [NSString stringWithFormat:@"You completed the %@ quiz! You got %i/%i correct!", self.gamePlayed.title, [self.gamePlayed getAmountCorrect:self.userAnswers], self.gamePlayed.amtQuestions];
@@ -50,7 +48,7 @@
     
     for (int i = 0; i < self.gamePlayed.amtQuestions; i++) {
         UILabel *question;
-        question = [[UILabel alloc] initWithFrame: CGRectMake(10, QUESTION_HEIGHT*i, 300, QUESTION_HEIGHT)];
+        question = [[UILabel alloc] initWithFrame: CGRectMake(0, QUESTION_HEIGHT*i, 320, QUESTION_HEIGHT)];
         question.numberOfLines = self.gamePlayed.amtQuestions + 2;
         NSString *questionAssesment = [NSString stringWithFormat: @"You chose %@; the correct answer is %@.",
                                        [userAnswers objectAtIndex: i],
@@ -67,6 +65,11 @@
     }
 }
 
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [questionsDisplay flashScrollIndicators];
+}
 
 - (void)didReceiveMemoryWarning
 {

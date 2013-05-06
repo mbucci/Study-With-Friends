@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="11G63" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Courses" syncable="YES">
-        <attribute name="attribute" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="newRelationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Games" inverseName="newRelationship" inverseEntity="Games" syncable="YES"/>
+        <relationship name="newRelationship1" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Professor" inverseName="newRelationship" inverseEntity="Professor" syncable="YES"/>
+        <relationship name="newRelationship2" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="newRelationship" inverseEntity="Student" syncable="YES"/>
     </entity>
     <entity name="Games" syncable="YES">
+        <attribute name="results" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="newRelationship" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Courses" inverseName="newRelationship" inverseEntity="Courses" syncable="YES"/>
     </entity>
+    <entity name="Professor" syncable="YES">
+        <relationship name="newRelationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Courses" inverseName="newRelationship1" inverseEntity="Courses" syncable="YES"/>
+    </entity>
+    <entity name="Student" syncable="YES">
+        <relationship name="newRelationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Courses" inverseName="newRelationship2" inverseEntity="Courses" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Courses" positionX="-3368" positionY="-3264" width="128" height="75"/>
-        <element name="Games" positionX="-3170" positionY="-3132" width="128" height="60"/>
+        <element name="Courses" positionX="-3224" positionY="-3285" width="128" height="90"/>
+        <element name="Games" positionX="-2990" positionY="-3279" width="128" height="75"/>
+        <element name="Professor" positionX="-3456" positionY="-3330" width="128" height="60"/>
+        <element name="Student" positionX="-3465" positionY="-3132" width="128" height="60"/>
     </elements>
 </model>

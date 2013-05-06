@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "ResultsViewController.h"
 #import "GameViewController.h"
+#import "Game.h"
+#import "StudyGames.h"
 
 @interface CoursesTableViewController : UITableViewController
 
 @property (nonatomic, weak) NSString *segueType;
+@property (nonatomic, strong) StudyGames *gamesArray;
 
 
 @end

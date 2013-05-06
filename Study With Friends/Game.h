@@ -19,14 +19,18 @@
     int amtQuestions;
 
 }
+
 @property NSString *title;
-
 @property int gameLength, amtQuestions;
+@property NSArray *questionSet;
+@property NSArray *answerKey;
 
-@property NSMutableArray *questionSet;
-@property NSMutableArray *answerKey;
+- (int)getAmountCorrect:(NSMutableArray*) userAnswers;
++ (Game *)createGameWithTitle:(NSString *)gameTitle
+                 Questions:(NSArray *)questions
+                   Answers:(NSArray *)answers
+             andGameLength:(int)length;
 
--(int) getAmountCorrect: (NSMutableArray*) userAnswers;
 
 
 

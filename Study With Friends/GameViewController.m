@@ -10,16 +10,18 @@
 
 
 @interface GameViewController ()
-    @property (nonatomic, strong) Game *game;
+    //@property (nonatomic, strong) Game *game;
     @property (nonatomic, strong) NSMutableArray *buttonSet;
     @property (nonatomic, strong) NSMutableArray *answers;
 @end
 
 @implementation GameViewController
 
-@synthesize game;
+//@synthesize game;
+@synthesize gameIndex = _gameIndex;
 @synthesize buttonSet;
-@synthesize answers;
+@synthesize answers = _answers;
+@synthesize gameDelegate = _gameDelegate;
 
 @synthesize timeDisplay;
 @synthesize questionNumberDisplay;
@@ -39,89 +41,19 @@ BOOL gameover = FALSE;
     ResultsViewController *RVC = [segue destinationViewController];
 
     RVC.userAnswers = self.answers;
-    RVC.gamePlayed = self.game;
+    RVC.gamePlayed = self.gameDelegate;
 }
 
-//lazy instantiation of Game model.
-- (Game *)game {
-    if(!game) {
-        
-        //new game
-        game = [[Game alloc] init];
-        
-        //set game length, number of questions
-        self.game.gameLength = 180;
-        self.game.amtQuestions = 5;
-        
-        //create question set and answer key
-        NSMutableArray *questions, *question1, *question2, *question3, *question4, *question5, *answerSet;
-        questions = [[NSMutableArray alloc] init];
-        question1 = [[NSMutableArray alloc] init];
-        question2 = [[NSMutableArray alloc] init];
-        question3 = [[NSMutableArray alloc] init];
-        question4 = [[NSMutableArray alloc] init];
-        question5 = [[NSMutableArray alloc] init];
-        answerSet = [[NSMutableArray alloc] init];
-        
-        [question1 addObject:@"If x=1 and y=1, what is x+y?"];
-        [question1 addObject: @"2"];
-        [question1 addObject: @"4"];
-        [question1 addObject: @"6"];
-        [question1 addObject: @"8"];
-        [question1 addObject: @"10"];
-        
-        [question2 addObject:@"If x=2 and y=2, what is x+y?"];
-        [question2 addObject: @"3"];
-        [question2 addObject: @"4"];
-        [question2 addObject: @"6"];
-        [question2 addObject: @"8"];
-        [question2 addObject: @"10"];
-        
-        [question3 addObject:@"If x=3 and y=3, what is x+y?"];
-        [question3 addObject: @"4"];
-        [question3 addObject: @"4"];
-        [question3 addObject: @"6"];
-        [question3 addObject: @"8"];
-        [question3 addObject: @"10"];
-        
-        [question4 addObject:@"If x=4 and y=4, what is x+y?"];
-        [question4 addObject: @"5"];
-        [question4 addObject: @"4"];
-        [question4 addObject: @"6"];
-        [question4 addObject: @"8"];
-        [question4 addObject: @"10"];
-        
-        [question5 addObject:@"If x=5 and y=5, what is x+y?"];
-        [question5 addObject: @"6"];
-        [question5 addObject: @"4"];
-        [question5 addObject: @"6"];
-        [question5 addObject: @"8"];
-        [question5 addObject: @"10"];
-        
-        [questions addObject: question1];
-        [questions addObject: question2];
-        [questions addObject: question3];
-        [questions addObject: question4];
-        [questions addObject: question5];
-        
-        [answerSet addObject: @"A"];
-        [answerSet addObject: @"B"];
-        [answerSet addObject: @"C"];
-        [answerSet addObject: @"D"];
-        [answerSet addObject: @"E"];
-        
-        if([questions count] == self.game.amtQuestions) {
-            self.game.questionSet = questions;
-        }
-        if([answerSet count] == self.game.amtQuestions) {
-            self.game.answerKey = answerSet;
-        }
-        
-        self.game.title = @"Arithmetic";
 
+-(int)gameIndex
+{
+    if (!_gameIndex){
+        _gameIndex = DEFAULT_INDEX;
     }
-    return game;
+    return _gameIndex;
 }
+
+
 - (NSMutableArray *)buttonSet
 {
     if (!buttonSet)  {
@@ -134,17 +66,19 @@ BOOL gameover = FALSE;
     }
     return buttonSet;
 }
+
+
 - (NSMutableArray *) answers
 {
-    if (!answers) {
-        answers = [[NSMutableArray alloc] init];
+    if (!_answers) {
+        _answers = [[NSMutableArray alloc] init];
         int i = 1;
-        while (i <= self.game.amtQuestions) {
-            [answers addObject: @""];
+        while (i <= self.gameDelegate.amtQuestions) {
+            [_answers addObject: @""];
             i = i+1;
         }
     }
-    return answers;
+    return _answers;
 }
 
 
@@ -199,8 +133,8 @@ BOOL gameover = FALSE;
             }
             
             //highlights appropriate button
-            if(answers) {
-                NSString *answerPicked = [answers objectAtIndex: questionNumber-1];
+            if(self.answers) {
+                NSString *answerPicked = [self.answers objectAtIndex: questionNumber-1];
                 
                 for(UIButton *button in buttonSet) {
                     if([button.currentTitle isEqualToString: answerPicked]) {
@@ -220,7 +154,8 @@ BOOL gameover = FALSE;
     //if user has hit start
     if(inGame && !gameover) {
         //user cannot hit next on final question
-        if( questionNumber < self.game.amtQuestions) {
+        
+        if( questionNumber < self.gameDelegate.amtQuestions) {
             questionNumber = questionNumber + 1;
             [self changeQuestionsAndAnswers: questionNumber];
             
@@ -231,8 +166,8 @@ BOOL gameover = FALSE;
                 [UIView commitAnimations];
             }
             //highlight appropriate button
-            if(answers) {
-                NSString *answerPicked = [answers objectAtIndex:questionNumber-1];
+            if(self.answers) {
+                NSString *answerPicked = [self.answers objectAtIndex:questionNumber-1];
                 
                 for(UIButton *button in buttonSet) {
                     if([button.currentTitle isEqualToString: answerPicked]) {
@@ -264,14 +199,14 @@ BOOL gameover = FALSE;
             timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(countDown) userInfo:nil repeats:YES];
         }
         
-        self.navigationController.navigationBar.topItem.title = self.game.title;
+        self.navigationController.navigationBar.topItem.title = self.gameDelegate.title;
     }
 }
 
 - (IBAction)endPressed:(UIButton *)sender {
     //user cannot end game without starting...
     if(inGame){
-        mainInt = self.game.gameLength;
+        mainInt = self.gameDelegate.gameLength;
     }
     
     
@@ -295,7 +230,7 @@ BOOL gameover = FALSE;
 
 - (void) countDown {
     
-    int timeLeft = self.game.gameLength - mainInt;
+    int timeLeft = self.gameDelegate.gameLength - mainInt;
     if(timeLeft < 0) {
         [self endGame];
     }
@@ -319,23 +254,23 @@ BOOL gameover = FALSE;
     self.questionNumberDisplay.text = questionHeader;
     
     //display question
-    NSString *question = [[self.game.questionSet objectAtIndex:number] objectAtIndex:0];
+    NSString *question = [[self.gameDelegate.questionSet objectAtIndex:number] objectAtIndex:0];
     self.questionTextDisplay.text = question;
     
     //display answer options
-    NSString *aAnswer = [[self.game.questionSet objectAtIndex:number] objectAtIndex:1];
+    NSString *aAnswer = [[self.gameDelegate.questionSet objectAtIndex:number] objectAtIndex:1];
     self.aOption.text = aAnswer;
     
-    NSString *bAnswer = [[self.game.questionSet objectAtIndex:number] objectAtIndex:2];
+    NSString *bAnswer = [[self.gameDelegate.questionSet objectAtIndex:number] objectAtIndex:2];
     self.bOption.text = bAnswer;
     
-    NSString *cAnswer = [[self.game.questionSet objectAtIndex:number] objectAtIndex:3];
+    NSString *cAnswer = [[self.gameDelegate.questionSet objectAtIndex:number] objectAtIndex:3];
     self.cOption.text = cAnswer;
     
-    NSString *dAnswer = [[self.game.questionSet objectAtIndex:number] objectAtIndex:4];
+    NSString *dAnswer = [[self.gameDelegate.questionSet objectAtIndex:number] objectAtIndex:4];
     self.dOption.text = dAnswer;
     
-    NSString *eAnswer = [[self.game.questionSet objectAtIndex:number] objectAtIndex:5];
+    NSString *eAnswer = [[self.gameDelegate.questionSet objectAtIndex:number] objectAtIndex:5];
     self.eOption.text = eAnswer;
     
 }
@@ -347,5 +282,6 @@ BOOL gameover = FALSE;
     [self performSegueWithIdentifier:@"results" sender:self];
     
 }
+
 
 @end
