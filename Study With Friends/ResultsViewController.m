@@ -7,7 +7,8 @@
 //
 
 #import "ResultsViewController.h"
-#import "Game.h"
+#import "CoursesTableViewController.h"
+
 
 @interface ResultsViewController () 
 
@@ -22,6 +23,7 @@
 @synthesize gamePlayed;
 @synthesize userAnswers;
 @synthesize questionsDisplay;
+@synthesize gameIndex = _gameIndex;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,7 +41,8 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 	// Do any additional setup after loading the view.
     self.navigationItem.hidesBackButton = YES;
-    NSString *gameOver = [NSString stringWithFormat:@"You completed the %@ quiz! You got %i/%i correct!", self.gamePlayed.title, [self.gamePlayed getAmountCorrect:self.userAnswers], self.gamePlayed.amtQuestions];
+    int amtCorrect = [self.gamePlayed getAmountCorrect:self.userAnswers];
+    NSString *gameOver = [NSString stringWithFormat:@"You completed the %@ quiz! You got %d/%d correct!", self.gamePlayed.title, amtCorrect, self.gamePlayed.amtQuestions];
     
     self.gameCompletedDisplay.text = gameOver;
     

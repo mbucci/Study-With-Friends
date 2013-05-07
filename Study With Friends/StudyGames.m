@@ -86,15 +86,13 @@
 
 -(NSString *)getPercentageForIndex:(int)index
 {
-    NSMutableArray *null = [[NSMutableArray alloc]init];
     Game *temp = [self.games objectAtIndex:index];
-    int correct = [temp getAmountCorrect:null];
-    NSString *fraction = [NSString stringWithFormat:@"%d/%d", correct, temp.amtQuestions];
+    
+    NSString *fraction = [NSString stringWithFormat:@"%d/%d", temp.amtCorrect, temp.amtQuestions];
     
     return fraction;
 
 }
-
 
 
 

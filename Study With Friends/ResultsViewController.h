@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GameViewController.h"
 
 @class Game;
 @interface ResultsViewController : UIViewController {
@@ -21,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *questionsDisplay;
 @property (nonatomic, strong) NSMutableArray *userAnswers;
 @property (nonatomic, strong) Game *gamePlayed;
+@property (nonatomic) int gameIndex;
 
 
 @end

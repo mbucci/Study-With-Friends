@@ -42,6 +42,7 @@ BOOL gameover = FALSE;
 
     RVC.userAnswers = self.answers;
     RVC.gamePlayed = self.gameDelegate;
+    RVC.gameIndex = self.gameIndex;
 }
 
 

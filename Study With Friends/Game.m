@@ -14,6 +14,8 @@
 @synthesize amtQuestions, gameLength;
 @synthesize answerKey, questionSet;
 @synthesize title;
+@synthesize amtCorrect = _amtCorrect;
+@synthesize played = _played;
 
 
 - (int)getAmountCorrect:(NSMutableArray*) userAnswers {
@@ -25,6 +27,8 @@
         }
         answerNumber ++;
     }
+    self.amtCorrect = amountCorrect;
+    self.played = YES;
     return amountCorrect;
 }
 
@@ -41,6 +45,8 @@
     game.questionSet = questions;
     game.gameLength = length;
     game.amtQuestions = [questions count];
+    game.amtCorrect = 0;
+    game.played = NO;
     
     return game;
     

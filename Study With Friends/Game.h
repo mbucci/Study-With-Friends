@@ -21,9 +21,10 @@
 }
 
 @property NSString *title;
-@property int gameLength, amtQuestions;
+@property int gameLength, amtQuestions, amtCorrect;
 @property NSArray *questionSet;
 @property NSArray *answerKey;
+@property BOOL played;
 
 - (int)getAmountCorrect:(NSMutableArray*) userAnswers;
 + (Game *)createGameWithTitle:(NSString *)gameTitle

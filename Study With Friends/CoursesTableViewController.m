@@ -64,6 +64,7 @@
             if ([segue.destinationViewController isKindOfClass:[GameViewController class]]) {
                 GameViewController *GVC = segue.destinationViewController;
                 GVC.gameDelegate = [self.gamesArray getGameForIndex:indexPath.row];
+                GVC.gameIndex = indexPath.row;
 
             }
         }
@@ -101,13 +102,20 @@
 
 - (NSString *)subtitleForRow:(NSUInteger)row
 {
-    return [self.gamesArray getPercentageForIndex:row];
+    Game *temp = [self.gamesArray getGameForIndex:row];
+    NSString *returnString = [NSString stringWithFormat:@"Score: %@", [self.gamesArray getPercentageForIndex:row]];
+    if (temp.played) {
+        return returnString;
+    } else {
+        return @"Play Now";
+    }
+    
 }
 
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"Math 181";
+    return @"Basic Math";
 }
 
 
@@ -135,6 +143,7 @@
         ResultsViewController *RVC = [[ResultsViewController alloc]init];
         RVC = segue.sourceViewController;
     }
+    [self.tableView reloadData];
     
 }
 
@@ -161,7 +170,6 @@
     }   
 }
 */
-
 /*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath

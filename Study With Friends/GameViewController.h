@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Game.h"
 #import "ResultsViewController.h"
-#import "StudyGames.h"
+//#import "StudyGames.h"
 
 
 #define DEFAULT_INDEX 0
@@ -31,7 +31,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *eOption;
 @property (weak, nonatomic) IBOutlet UILabel *questionTextDisplay;
 @property (nonatomic) int gameIndex;
-@property (nonatomic) Game *gameDelegate;
+@property (nonatomic, strong) Game *gameDelegate;
 
 
 

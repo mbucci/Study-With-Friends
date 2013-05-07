@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ResultsViewController.h"
 #import "GameViewController.h"
-#import "Game.h"
 #import "StudyGames.h"
 
 @interface CoursesTableViewController : UITableViewController
