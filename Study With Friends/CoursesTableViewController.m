@@ -7,6 +7,7 @@
 //
 
 #import "CoursesTableViewController.h"
+#import "StatisticsViewController.h"
 
 @interface CoursesTableViewController ()
 
@@ -36,7 +37,15 @@
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-
+    
+    NSArray *controllers =  self.tabBarController.viewControllers;
+    StatisticsViewController *SVC = [[StatisticsViewController alloc]init];
+    for (id obj in controllers) {
+        if ([obj isKindOfClass:[StatisticsViewController class]]) {
+            SVC = obj;
+            SVC.statisticsGamesDelegate = self.gamesArray.games;
+        }
+    }
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -58,6 +67,10 @@
     item.leftBarButtonItem = self.editButtonItem;
     [self.tableView reloadData];
         
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
 }
 
 
@@ -153,7 +166,8 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"Basic Math";
+    Game *temp = [self.gamesArray.games objectAtIndex:section];
+    return temp.course;
 }
 
 

@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PieChartView.h"
+#import "Game.h"
 
 @interface StatisticsViewController : UIViewController
+
+@property (nonatomic, retain) IBOutlet PieChartView *pieChart;
+@property (nonatomic, strong) NSArray *statisticsGamesDelegate;
+@property (weak, nonatomic) IBOutlet UILabel *gameLabel1;
+@property (weak, nonatomic) IBOutlet UILabel *gameLabel2;
+@property (weak, nonatomic) IBOutlet UILabel *gameLabel3;
+@property (weak, nonatomic) IBOutlet UILabel *percentLabel;
 
 @end

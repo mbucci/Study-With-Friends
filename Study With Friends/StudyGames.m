@@ -64,7 +64,13 @@
         NSArray *questions = [[NSArray alloc] initWithObjects:question1, question2, question3, question4, question5, nil];
         NSArray *answerSet = [[NSArray alloc] initWithObjects:@"A", @"B", @"C", @"D", @"E", nil];
         
-        game1 = [Game createGameWithTitle:@"Arithmetic" Questions:questions Answers:answerSet andGameLength:180];
+        
+        
+        game1 = [Game createGameWithTitle:@"Arithmetic"
+                                   Course:@"Basic Math"
+                                Questions:questions
+                                  Answers:answerSet
+                            andGameLength:180];
         
         [_games addObject:game1];
         

@@ -35,6 +35,7 @@
 		7DEBEB94173949FF007D162E /* trophy.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DEBEB93173949FF007D162E /* trophy.png */; };
 		7DEBEB9617394A07007D162E /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DEBEB9517394A07007D162E /* pencil.png */; };
 		7DEBEB9917394D61007D162E /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DEBEB9817394D61007D162E /* StatisticsViewController.m */; };
+		7DFDFD0E1740228E0087A530 /* PieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DFDFD0D1740228E0087A530 /* PieChartView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,8 @@
 		7DEBEB9517394A07007D162E /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
 		7DEBEB9717394D61007D162E /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
 		7DEBEB9817394D61007D162E /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
+		7DFDFD0C1740228E0087A530 /* PieChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChartView.h; sourceTree = "<group>"; };
+		7DFDFD0D1740228E0087A530 /* PieChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +149,8 @@
 				7DE25746172863A00076058E /* Game.m */,
 				7D7375061718A413007BC02D /* Login.h */,
 				7D7375071718A413007BC02D /* Login.m */,
+				7DFDFD0C1740228E0087A530 /* PieChartView.h */,
+				7DFDFD0D1740228E0087A530 /* PieChartView.m */,
 				2AE2BDE017123993004BCBA5 /* Supporting Files */,
 			);
 			path = "Study With Friends";
@@ -259,6 +264,7 @@
 				7DE25753172863B00076058E /* ResultsViewController.m in Sources */,
 				7DA186EE173831EF00762EDC /* StudyGames.m in Sources */,
 				7DEBEB9917394D61007D162E /* StatisticsViewController.m in Sources */,
+				7DFDFD0E1740228E0087A530 /* PieChartView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

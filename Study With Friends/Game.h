@@ -20,7 +20,7 @@
 
 }
 
-@property NSString *title;
+@property NSString *title, *course;
 @property int gameLength, amtQuestions, amtCorrect;
 @property NSArray *questionSet;
 @property NSArray *answerKey;
@@ -29,6 +29,7 @@
 
 - (int)getAmountCorrect:(NSMutableArray*) userAnswers;
 + (Game *)createGameWithTitle:(NSString *)gameTitle
+                       Course:(NSString *)course
                  Questions:(NSArray *)questions
                    Answers:(NSArray *)answers
              andGameLength:(int)length;

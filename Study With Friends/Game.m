@@ -13,7 +13,7 @@
 
 @synthesize amtQuestions, gameLength;
 @synthesize answerKey, questionSet;
-@synthesize title;
+@synthesize title, course;
 @synthesize amtCorrect = _amtCorrect;
 @synthesize played = _played;
 @synthesize userAnswers = _userAnswers;
@@ -36,13 +36,16 @@
 
 
 + (Game *)createGameWithTitle:(NSString *)gameTitle
-                  Questions:(NSArray *)questions
-                   Answers:(NSArray *)answers
-             andGameLength:(int)length
+                       Course:(NSString *)course
+                    Questions:(NSArray *)questions
+                      Answers:(NSArray *)answers
+                andGameLength:(int)length
+
 {
     Game *game = [[Game alloc]init];
     
     game.title = gameTitle;
+    game.course = course;
     game.answerKey = answers;
     game.questionSet = questions;
     game.gameLength = length;
