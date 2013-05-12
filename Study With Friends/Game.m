@@ -16,6 +16,7 @@
 @synthesize title;
 @synthesize amtCorrect = _amtCorrect;
 @synthesize played = _played;
+@synthesize userAnswers = _userAnswers;
 
 
 - (int)getAmountCorrect:(NSMutableArray*) userAnswers {
@@ -29,6 +30,7 @@
     }
     self.amtCorrect = amountCorrect;
     self.played = YES;
+    self.userAnswers = userAnswers;
     return amountCorrect;
 }
 
@@ -47,6 +49,7 @@
     game.amtQuestions = [questions count];
     game.amtCorrect = 0;
     game.played = NO;
+    game.userAnswers = NULL;
     
     return game;
     

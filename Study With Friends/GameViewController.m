@@ -35,7 +35,6 @@ int mainInt;
 int questionNumber;
 BOOL inGame;
 BOOL gamePaused;
-BOOL gameover = FALSE;
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     ResultsViewController *RVC = [segue destinationViewController];
@@ -90,6 +89,13 @@ BOOL gameover = FALSE;
     
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (self.gameDelegate.played) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -119,7 +125,7 @@ BOOL gameover = FALSE;
 
 - (IBAction)swipeBack:(UISwipeGestureRecognizer *)sender {
     //if user has hit start...
-    if(inGame && !gameover){
+    if(inGame && !self.gameDelegate.played){
         //user cannot hit back on question 1
         if(questionNumber > 1) {
             //moves back a question
@@ -128,7 +134,7 @@ BOOL gameover = FALSE;
             
             if (sender.state == UIGestureRecognizerStateEnded) {
                 [UIView beginAnimations:nil context:NULL];
-                [UIView setAnimationDuration:0.55];
+                [UIView setAnimationDuration:0.45];
                 [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.view cache:YES];
                 [UIView commitAnimations];
             }
@@ -153,7 +159,7 @@ BOOL gameover = FALSE;
 
 - (IBAction)swipeNext:(UISwipeGestureRecognizer *)sender {
     //if user has hit start
-    if(inGame && !gameover) {
+    if(inGame && !self.gameDelegate.played) {
         //user cannot hit next on final question
         
         if( questionNumber < self.gameDelegate.amtQuestions) {
@@ -162,7 +168,7 @@ BOOL gameover = FALSE;
             
             if (sender.state == UIGestureRecognizerStateEnded) {
                 [UIView beginAnimations:nil context:NULL];
-                [UIView setAnimationDuration:0.55];
+                [UIView setAnimationDuration:0.45];
                 [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
                 [UIView commitAnimations];
             }
@@ -278,7 +284,6 @@ BOOL gameover = FALSE;
 
 -(void) endGame {
     
-    gameover = TRUE;
     [timer invalidate];
     [self performSegueWithIdentifier:@"results" sender:self];
     

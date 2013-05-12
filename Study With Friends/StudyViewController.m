@@ -70,7 +70,6 @@
     CoursesTableViewController *CTVC = [[CoursesTableViewController alloc] init];
     if ([[segue destinationViewController] isKindOfClass:[CoursesTableViewController class]]){
         CTVC = [segue destinationViewController];
-        CTVC.segueType = [segue identifier];
     }
     
 }
@@ -78,24 +77,15 @@
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    if ([identifier isEqualToString:@"Student"]) {
         if([self.loginCheck checkLoginForUsername:self.username.text andPassword:self.password.text forCredentials:@"Student"]) {
             return YES;
-        } else {
-            self.loginLabel.text = @"Invalid Login";
-            return NO;
-        }
-    }
-    
-    if ([identifier isEqualToString:@"Teacher"]) {
-        if([self.loginCheck checkLoginForUsername:self.username.text andPassword:self.password.text forCredentials:@"Teacher"]) {
+        } else if ([self.loginCheck checkLoginForUsername:self.username.text andPassword:self.password.text forCredentials:@"Teacher"]) {
             return YES;
         } else {
             self.loginLabel.text = @"Invalid Login";
             return NO;
         }
-    }
-    return NO;
+
 }
 
 

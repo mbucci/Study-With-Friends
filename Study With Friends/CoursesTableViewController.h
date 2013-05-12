@@ -13,7 +13,6 @@
 
 @interface CoursesTableViewController : UITableViewController
 
-@property (nonatomic, weak) NSString *segueType;
 @property (nonatomic, strong) StudyGames *gamesArray;
 
 

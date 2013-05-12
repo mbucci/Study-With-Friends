@@ -25,6 +25,7 @@
 @property NSArray *questionSet;
 @property NSArray *answerKey;
 @property BOOL played;
+@property NSMutableArray *userAnswers;
 
 - (int)getAmountCorrect:(NSMutableArray*) userAnswers;
 + (Game *)createGameWithTitle:(NSString *)gameTitle

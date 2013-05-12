@@ -14,7 +14,6 @@
 
 @implementation CoursesTableViewController
 
-@synthesize segueType = _segueType;
 @synthesize gamesArray = _gamesArray;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -37,22 +36,28 @@
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    UINavigationItem *item = [self.navigationController.navigationBar.items lastObject];
-    item.title = @"Courses";
-    [item setHidesBackButton:YES];
-    item.leftBarButtonItem = self.editButtonItem;
+
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    UINavigationItem *item = [self.navigationController.navigationBar.items lastObject];
+    item.title = @"Play Game";
+    [item setHidesBackButton:YES];
+    item.leftBarButtonItem = self.editButtonItem;
+    [self.tableView reloadData];
+        
 }
 
 
@@ -67,6 +72,14 @@
                 GVC.gameIndex = indexPath.row;
 
             }
+            if ([segue.destinationViewController isKindOfClass:[ResultsViewController class]]) {
+                ResultsViewController *RVC = [segue destinationViewController];
+            
+                Game *temp = [self.gamesArray.games objectAtIndex:indexPath.row];
+                RVC.userAnswers = temp.userAnswers;
+                RVC.gamePlayed = temp;
+                RVC.gameIndex = indexPath.row;
+            }
         }
     }
 }
@@ -74,7 +87,31 @@
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
+    if ([sender isKindOfClass:[UITableViewCell class] ]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        if (indexPath) {
+            Game *temp = [self.gamesArray.games objectAtIndex:indexPath.row];
+            if ([identifier isEqualToString:@"game"]) {
+                if (temp.played) {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You've already played that game!"
+                                                                    message:@"Go to statistics to view your game breakdown "
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil, nil];
+                    [alert show];
+                    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+                    return NO;
+                }
+            }
+            if ([identifier isEqualToString:@"results"]) {
+                if (!temp.played) {
+                    return YES;
+                }
+            }
+        }
+    }
     return YES;
+    
 }
 
 
@@ -100,6 +137,7 @@
     return temp.title;
 }
 
+
 - (NSString *)subtitleForRow:(NSUInteger)row
 {
     Game *temp = [self.gamesArray getGameForIndex:row];
@@ -121,30 +159,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    Game *temp = [self.gamesArray getGameForIndex:indexPath.row];
     static NSString *CellIdentifier = @"Courses";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     
     cell.textLabel.text = [self titleForRow:indexPath.row];
-    
-    if ([self.segueType isEqualToString:@"Student"]){
-        cell.detailTextLabel.text = [self subtitleForRow:indexPath.row];
+    cell.detailTextLabel.text = [self subtitleForRow:indexPath.row];
+    if (temp.played) {
+        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    if ([self.segueType isEqualToString:@"Teacher"]){
-        cell.detailTextLabel.text = @"Edit";
-    }
+
     
     return cell;
-}
-
-- (IBAction)unwindOnSelection:(UIStoryboardSegue *)segue
-{
-    if ([segue.sourceViewController isKindOfClass:[ResultsViewController class]]) {
-        ResultsViewController *RVC = [[ResultsViewController alloc]init];
-        RVC = segue.sourceViewController;
-    }
-    [self.tableView reloadData];
-    
 }
 
 

@@ -22,5 +22,6 @@
 @property (nonatomic, strong) Game *gamePlayed;
 @property (nonatomic) int gameIndex;
 
+- (IBAction)mainMenuPressed:(id)sender;
 
 @end
