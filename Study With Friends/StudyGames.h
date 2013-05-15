@@ -14,9 +14,12 @@
 @property (nonatomic, strong) NSMutableArray *games;
 
 
--(NSString *)getPercentageForIndex:(int)index;
 -(void)addGame:(Game *)newGame;
--(Game *)getGameForIndex:(int)index;
+-(Game *)getGameForIndex:(int)index andSection:(int)section;
+-(int)getGamesPerCourse:(NSString *)course;
+-(int)getNumberOfCourses;
+-(NSString *)getCourseForCourseSection:(int)section;
+-(int)getCourseSectionForCourse:(NSString *)course;
 
 
 @end

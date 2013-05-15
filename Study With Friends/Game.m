@@ -17,10 +17,11 @@
 @synthesize amtCorrect = _amtCorrect;
 @synthesize played = _played;
 @synthesize userAnswers = _userAnswers;
+@synthesize courseSection = _courseSection;
 
 
 - (int)getAmountCorrect:(NSMutableArray*) userAnswers {
-    int amountCorrect=0;
+    int amountCorrect= 0;
     int answerNumber = 0;
     for (NSString *userAnswer in userAnswers) {
         if([[answerKey objectAtIndex: answerNumber] isEqualToString: userAnswer]) {
@@ -53,6 +54,7 @@
     game.amtCorrect = 0;
     game.played = NO;
     game.userAnswers = NULL;
+    game.courseSection = 0;
     
     return game;
     

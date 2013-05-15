@@ -11,11 +11,14 @@
 
 @interface CoursesTableViewController ()
 
+@property (nonatomic, weak) UINavigationItem *controllersNavigationBar;
+
 @end
 
 @implementation CoursesTableViewController
 
-@synthesize gamesArray = _gamesArray;
+@synthesize controllersNavigationBar = _controllersNavigationBar;
+@synthesize userDelegate = _userDelegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -25,27 +28,25 @@
     return self;
 }
 
--(StudyGames *)gamesArray
-{
-    if (!_gamesArray) {
-        _gamesArray = [[StudyGames alloc]init];
-    }
-    return _gamesArray;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
+    self.controllersNavigationBar = [self.navigationController.navigationBar.items lastObject];
+    self.controllersNavigationBar.title = @"Play Game";
+    
+    /*
     NSArray *controllers =  self.tabBarController.viewControllers;
     StatisticsViewController *SVC = [[StatisticsViewController alloc]init];
     for (id obj in controllers) {
         if ([obj isKindOfClass:[StatisticsViewController class]]) {
             SVC = obj;
-            SVC.statisticsGamesDelegate = self.gamesArray.games;
+            SVC.statisticsGamesDelegate = self.userDelegate.userGames.games;
         }
     }
+     */
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -53,25 +54,23 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
 }
 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+
 - (void)viewDidAppear:(BOOL)animated
 {
-    UINavigationItem *item = [self.navigationController.navigationBar.items lastObject];
-    item.title = @"Play Game";
-    [item setHidesBackButton:YES];
-    item.leftBarButtonItem = self.editButtonItem;
+    self.controllersNavigationBar.title = @"Play Game";
+    [self.controllersNavigationBar setHidesBackButton:YES];
+    self.controllersNavigationBar.leftBarButtonItem = self.editButtonItem;
     [self.tableView reloadData];
         
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-}
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -81,14 +80,14 @@
         if (indexPath) {
             if ([segue.destinationViewController isKindOfClass:[GameViewController class]]) {
                 GameViewController *GVC = segue.destinationViewController;
-                GVC.gameDelegate = [self.gamesArray getGameForIndex:indexPath.row];
+                GVC.gameDelegate = [self.userDelegate.userGames getGameForIndex:indexPath.row andSection:indexPath.section];
                 GVC.gameIndex = indexPath.row;
 
             }
             if ([segue.destinationViewController isKindOfClass:[ResultsViewController class]]) {
                 ResultsViewController *RVC = [segue destinationViewController];
             
-                Game *temp = [self.gamesArray.games objectAtIndex:indexPath.row];
+                Game *temp = [self.userDelegate.userGames.games objectAtIndex:indexPath.row];
                 RVC.userAnswers = temp.userAnswers;
                 RVC.gamePlayed = temp;
                 RVC.gameIndex = indexPath.row;
@@ -103,11 +102,11 @@
     if ([sender isKindOfClass:[UITableViewCell class] ]) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         if (indexPath) {
-            Game *temp = [self.gamesArray.games objectAtIndex:indexPath.row];
+            Game *temp = [self.userDelegate.userGames getGameForIndex:indexPath.row andSection:indexPath.section];
             if ([identifier isEqualToString:@"game"]) {
                 if (temp.played) {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You've already played that game!"
-                                                                    message:@"Go to statistics to view your game breakdown "
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You've Already Played That Game!"
+                                                                    message:@"Go to Statistics to view a breakdown of all your games, or hit the blue button next to your score to view your results"
                                                                    delegate:nil
                                                           cancelButtonTitle:@"OK"
                                                           otherButtonTitles:nil, nil];
@@ -129,32 +128,33 @@
 
 
 
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return [self.userDelegate.userGames getNumberOfCourses];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    NSString *course = [self.userDelegate.userGames getCourseForCourseSection:section];
+    return [self.userDelegate.userGames getGamesPerCourse:course];
 }
 
 
-- (NSString *)titleForRow:(NSUInteger)row
+- (NSString *)titleForRow:(NSUInteger)row AndSection:(NSUInteger)section
 {
-    Game *temp = [self.gamesArray getGameForIndex:row];
+    Game *temp = [self.userDelegate.userGames getGameForIndex:row andSection:section];
     return temp.title;
 }
 
 
-- (NSString *)subtitleForRow:(NSUInteger)row
+- (NSString *)subtitleForRow:(NSUInteger)row AndSection:(NSUInteger)section
 {
-    Game *temp = [self.gamesArray getGameForIndex:row];
-    NSString *returnString = [NSString stringWithFormat:@"Score: %@", [self.gamesArray getPercentageForIndex:row]];
+    Game *temp = [self.userDelegate.userGames getGameForIndex:row andSection:section];
+    NSString *fraction = [NSString stringWithFormat:@"%d/%d", temp.amtCorrect, temp.amtQuestions];
+    NSString *returnString = [NSString stringWithFormat:@"Score: %@", fraction];
     if (temp.played) {
         return returnString;
     } else {
@@ -166,20 +166,19 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    Game *temp = [self.gamesArray.games objectAtIndex:section];
+    Game *temp = [self.userDelegate.userGames.games objectAtIndex:section];
     return temp.course;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Game *temp = [self.gamesArray getGameForIndex:indexPath.row];
+    Game *temp = [self.userDelegate.userGames getGameForIndex:indexPath.row andSection:indexPath.section];
     static NSString *CellIdentifier = @"Courses";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    
-    cell.textLabel.text = [self titleForRow:indexPath.row];
-    cell.detailTextLabel.text = [self subtitleForRow:indexPath.row];
+    cell.textLabel.text = [self titleForRow:indexPath.row AndSection:indexPath.section];
+    cell.detailTextLabel.text = [self subtitleForRow:indexPath.row AndSection:indexPath.section];
     if (temp.played) {
         cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     } else {

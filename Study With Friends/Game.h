@@ -9,16 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GameViewController.h"
 
-@interface Game : NSObject {
-
-    NSMutableArray *questionSet;
-    NSMutableArray *answerKey;
-    NSString *title;
-    
-    int gameLength;
-    int amtQuestions;
-
-}
+@interface Game : NSObject 
 
 @property NSString *title, *course;
 @property int gameLength, amtQuestions, amtCorrect;
@@ -26,6 +17,7 @@
 @property NSArray *answerKey;
 @property BOOL played;
 @property NSMutableArray *userAnswers;
+@property int courseSection;
 
 - (int)getAmountCorrect:(NSMutableArray*) userAnswers;
 + (Game *)createGameWithTitle:(NSString *)gameTitle

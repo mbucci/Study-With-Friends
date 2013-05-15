@@ -3,13 +3,13 @@
 //  StudyWithFriends
 //
 //  Created by Sharif Younes on 4/17/13.
+//  Modified by Max Bucci
 //  Copyright (c) 2013 Sharif Younes. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "Game.h"
 #import "ResultsViewController.h"
-//#import "StudyGames.h"
 
 
 #define DEFAULT_INDEX 0
@@ -23,15 +23,16 @@
 @property (weak, nonatomic) IBOutlet UIButton *bButton;
 @property (weak, nonatomic) IBOutlet UIButton *cButton;
 @property (weak, nonatomic) IBOutlet UIButton *dButton;
-@property (weak, nonatomic) IBOutlet UIButton *eButton;
 @property (weak, nonatomic) IBOutlet UILabel *aOption;
 @property (weak, nonatomic) IBOutlet UILabel *bOption;
 @property (weak, nonatomic) IBOutlet UILabel *cOption;
 @property (weak, nonatomic) IBOutlet UILabel *dOption;
-@property (weak, nonatomic) IBOutlet UILabel *eOption;
 @property (weak, nonatomic) IBOutlet UILabel *questionTextDisplay;
 @property (nonatomic) int gameIndex;
 @property (nonatomic, strong) Game *gameDelegate;
+@property (weak, nonatomic) IBOutlet UIButton *startButton;
+@property (weak, nonatomic) IBOutlet UIButton *endButton;
+@property (weak, nonatomic) IBOutlet UIButton *pauseButton;
 
 
 
@@ -44,7 +45,7 @@
 
 
 -(void) countDown;
--(void) changeQuestionsAndAnswers: (int) i;
+-(void) changeQuestionsAndAnswers:(int)i;
 -(void) endGame;
 
 

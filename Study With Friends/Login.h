@@ -10,7 +10,8 @@
 
 @interface Login : NSObject
 
-- (BOOL)checkLoginForUsername:(NSString *)userName andPassword:(NSString *)password forCredentials:(NSString *)creds;
+- (BOOL)checkLoginForUsername:(NSString *)userName andPassword:(NSString *)password;
+- (BOOL)checkIfUsernameExists:(NSString *)userName;
 - (void)addToDictionaryUsername:(NSString *)username andPassword:(NSString *)password;
 
 @end

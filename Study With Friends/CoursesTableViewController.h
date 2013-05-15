@@ -10,10 +10,11 @@
 #import "ResultsViewController.h"
 #import "GameViewController.h"
 #import "StudyGames.h"
+#import "UserProfile.h"
 
 @interface CoursesTableViewController : UITableViewController
 
-@property (nonatomic, strong) StudyGames *gamesArray;
+@property (nonatomic, retain) UserProfile *userDelegate;
 
 
 @end

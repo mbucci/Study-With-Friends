@@ -3,38 +3,38 @@
 //  StudyWithFriends
 //
 //  Created by Sharif Younes on 4/17/13.
+//  Modified by Max Bucci 
 //  Copyright (c) 2013 Sharif Younes. All rights reserved.
 //
 
 #import "GameViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @interface GameViewController ()
-    //@property (nonatomic, strong) Game *game;
     @property (nonatomic, strong) NSMutableArray *buttonSet;
     @property (nonatomic, strong) NSMutableArray *answers;
 @end
 
 @implementation GameViewController
 
-//@synthesize game;
 @synthesize gameIndex = _gameIndex;
 @synthesize buttonSet;
 @synthesize answers = _answers;
 @synthesize gameDelegate = _gameDelegate;
-
 @synthesize timeDisplay;
 @synthesize questionNumberDisplay;
 @synthesize timer;
-
-@synthesize aButton, bButton, cButton, dButton, eButton;
-@synthesize aOption, bOption, cOption, dOption, eOption;
+@synthesize aButton, bButton, cButton, dButton;
+@synthesize startButton, endButton, pauseButton;
+@synthesize aOption, bOption, cOption, dOption;
 @synthesize questionTextDisplay;
 
 int mainInt;
 int questionNumber;
 BOOL inGame;
 BOOL gamePaused;
+
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     ResultsViewController *RVC = [segue destinationViewController];
@@ -62,7 +62,6 @@ BOOL gamePaused;
         [buttonSet addObject: bButton];
         [buttonSet addObject: cButton];
         [buttonSet addObject: dButton];
-        [buttonSet addObject: eButton];
     }
     return buttonSet;
 }
@@ -84,23 +83,56 @@ BOOL gamePaused;
 
 - (void)viewDidLoad
 {
+    self.navigationItem.title = self.gameDelegate.title;
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    inGame = FALSE;
+    
+    [self setLayerToButton:aButton];
+    [self setLayerToButton:bButton];
+    [self setLayerToButton:cButton];
+    [self setLayerToButton:dButton];
+    [self setLayerToButton:endButton];
+    [self setLayerToButton:startButton];
+    [self setLayerToButton:pauseButton];
+    
+    [self.startButton setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
+    [self.endButton setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
+    [self.pauseButton setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
+    
+    [self.pauseButton setTitle:@"Pause" forState:UIControlStateNormal];
+}
+
+
+- (void)setLayerToButton:(UIButton *)button
+{
+    [button setBackgroundColor:[UIColor whiteColor]];
+    button.layer.cornerRadius = 3.0f;
+    button.layer.masksToBounds = NO;
+    button.layer.borderWidth = 1.0f;
+    button.layer.shadowColor = [UIColor blackColor].CGColor;
+    button.layer.borderColor = [UIColor grayColor].CGColor;
+    button.layer.shadowOpacity = 0.8;
+    button.layer.shadowRadius = 3;
+    button.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
     
 }
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
     if (self.gameDelegate.played) {
         [self.navigationController popViewControllerAnimated:YES];
     }
+    inGame = FALSE;
 }
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 -(IBAction)answerPressed:(UIButton *)sender {
     //if user has hit start...
@@ -110,18 +142,32 @@ BOOL gamePaused;
         //adds it to array that stores user's answers
         [self.answers replaceObjectAtIndex:questionNumber-1 withObject:answerPicked];
         //highlights appropriate button
-        for(UIButton *button in self.buttonSet) {
+        for(UIButton *button in self.buttonSet){
             if([button.currentTitle isEqualToString: answerPicked]) {
-                [button setBackgroundColor:[UIColor redColor]];
+                [button setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
             }
             else {
-                [button setBackgroundColor:[UIColor whiteColor]];
+                [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
             }
         }
     }
 
-
 }
+
+
+-(void)highlightButton:(UIButton *)button
+{
+    [button setHighlighted:YES];
+    [button setSelected:YES];
+}
+
+
+-(void)unhighlightButton:(UIButton *)button
+{
+    [button setHighlighted:NO];
+    [button setSelected:NO];
+}
+
 
 - (IBAction)swipeBack:(UISwipeGestureRecognizer *)sender {
     //if user has hit start...
@@ -134,7 +180,7 @@ BOOL gamePaused;
             
             if (sender.state == UIGestureRecognizerStateEnded) {
                 [UIView beginAnimations:nil context:NULL];
-                [UIView setAnimationDuration:0.45];
+                [UIView setAnimationDuration:0.5];
                 [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.view cache:YES];
                 [UIView commitAnimations];
             }
@@ -145,10 +191,10 @@ BOOL gamePaused;
                 
                 for(UIButton *button in buttonSet) {
                     if([button.currentTitle isEqualToString: answerPicked]) {
-                        [button setBackgroundColor:[UIColor redColor]];
+                        [button setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
                     }
                     else {
-                        [button setBackgroundColor:[UIColor whiteColor]];
+                        [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
                     }
                 }
             }
@@ -157,18 +203,19 @@ BOOL gamePaused;
 
 }
 
+
 - (IBAction)swipeNext:(UISwipeGestureRecognizer *)sender {
     //if user has hit start
     if(inGame && !self.gameDelegate.played) {
         //user cannot hit next on final question
         
-        if( questionNumber < self.gameDelegate.amtQuestions) {
+        if(questionNumber < self.gameDelegate.amtQuestions) {
             questionNumber = questionNumber + 1;
             [self changeQuestionsAndAnswers: questionNumber];
             
             if (sender.state == UIGestureRecognizerStateEnded) {
                 [UIView beginAnimations:nil context:NULL];
-                [UIView setAnimationDuration:0.45];
+                [UIView setAnimationDuration:0.5];
                 [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
                 [UIView commitAnimations];
             }
@@ -178,10 +225,10 @@ BOOL gamePaused;
                 
                 for(UIButton *button in buttonSet) {
                     if([button.currentTitle isEqualToString: answerPicked]) {
-                        [button setBackgroundColor:[UIColor redColor]];
+                        [button setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
                     }
                     else {
-                        [button setBackgroundColor:[UIColor whiteColor]];
+                        [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
                     }
                 }
             }
@@ -205,10 +252,9 @@ BOOL gamePaused;
         if(!timer) {
             timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(countDown) userInfo:nil repeats:YES];
         }
-        
-        self.navigationController.navigationBar.topItem.title = self.gameDelegate.title;
     }
 }
+
 
 - (IBAction)endPressed:(UIButton *)sender {
     //user cannot end game without starting...
@@ -220,20 +266,24 @@ BOOL gamePaused;
     
 }
 
+
 - (IBAction)pausePressed:(UIButton *)sender {
     if(inGame) {
         if(!gamePaused) {
             [timer invalidate];
             gamePaused = TRUE;
-            [sender setBackgroundImage: [UIImage imageNamed:@"playButton.png"] forState:UIControlStateNormal];
+            [sender setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+            [sender setTitle:@"Resume" forState:UIControlStateNormal];
         }
         else {
             timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(countDown) userInfo:nil repeats:YES];
             gamePaused = FALSE;
-            [sender setBackgroundImage: [UIImage imageNamed:@"pauseButton.jpg"] forState:UIControlStateNormal];
+            [sender setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+            [sender setTitle:@"Pause" forState:UIControlStateNormal];
         }
     }
 }
+
 
 - (void) countDown {
     
@@ -253,7 +303,7 @@ BOOL gamePaused;
 }
 
 
--(void) changeQuestionsAndAnswers : (int) questionNumber {
+-(void) changeQuestionsAndAnswers:(int) questionNumber {
     
     int number = questionNumber -1;
     
@@ -277,10 +327,8 @@ BOOL gamePaused;
     NSString *dAnswer = [[self.gameDelegate.questionSet objectAtIndex:number] objectAtIndex:4];
     self.dOption.text = dAnswer;
     
-    NSString *eAnswer = [[self.gameDelegate.questionSet objectAtIndex:number] objectAtIndex:5];
-    self.eOption.text = eAnswer;
-    
 }
+
 
 -(void) endGame {
     

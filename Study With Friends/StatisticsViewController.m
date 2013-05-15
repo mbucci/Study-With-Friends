@@ -49,11 +49,11 @@
     item.leftBarButtonItem = nil;
     
     [self.pieChart clearItems];
-    Game *temp = [self.statisticsGamesDelegate objectAtIndex:0];
     double fraction = 0;
     double total = 0;
     int gamesPlayed = 0;
     for (int i = 0; i < self.statisticsGamesDelegate.count; i++) {
+        Game *temp = [self.statisticsGamesDelegate objectAtIndex:i];
         fraction += temp.amtCorrect;
         if (temp.played) {
             gamesPlayed ++;

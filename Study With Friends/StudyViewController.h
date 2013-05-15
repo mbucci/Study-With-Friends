@@ -9,9 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "Login.h"
 #import "CoursesTableViewController.h"
+#import "UserProfile.h"
+#import "StatisticsViewController.h"
 
 @interface StudyViewController : UIViewController
 
 - (IBAction)newLogin:(id)sender;
+- (IBAction)unwindOnSelect:(UIStoryboardSegue *)segue;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIButton *firstLoginButton;
 
 @end
