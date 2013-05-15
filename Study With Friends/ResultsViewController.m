@@ -65,18 +65,45 @@
         NSString *questionAssesment = [NSString stringWithFormat: @"You chose %@; the correct answer is %@.",
                                        [userAnswers objectAtIndex: i],
                                        [self.gamePlayed.answerKey objectAtIndex: i]];
-        question.text = [NSString stringWithFormat:@"%@ \n (A) %@ \n (B) %@ \n (C) %@ \n (D) %@ \n %@",
-                          [[self.gamePlayed.questionSet objectAtIndex:i] objectAtIndex: 0],
-                          [[self.gamePlayed.questionSet objectAtIndex:i] objectAtIndex: 1],
-                          [[self.gamePlayed.questionSet objectAtIndex:i] objectAtIndex: 2],
-                          [[self.gamePlayed.questionSet objectAtIndex:i] objectAtIndex: 3],
-                          [[self.gamePlayed.questionSet objectAtIndex:i] objectAtIndex: 4],
-                          questionAssesment];
+        question.text = [self returnStringForQuestionSet:[self.gamePlayed.questionSet objectAtIndex:i]
+                                    andQuestionAssesment:questionAssesment];
+        
         [self.questionsDisplay addSubview: question];
         question.opaque = NO;
         question.textColor = self.gameCompletedDisplay.textColor;
         [question setBackgroundColor:[UIColor clearColor]];
     }
+}
+
+
+-(NSString *)returnStringForQuestionSet:(NSArray *)questions andQuestionAssesment:(NSString *)assesment
+{
+    NSString *returnString;
+    
+    if (questions.count-1 >= 4){
+        returnString =  [NSString stringWithFormat:@"%@ \n (A) %@ \n (B) %@ \n (C) %@ \n (D) %@ \n %@",
+                        [questions objectAtIndex: 0],
+                        [questions objectAtIndex: 1],
+                        [questions objectAtIndex: 2],
+                        [questions objectAtIndex: 3],
+                        [questions objectAtIndex: 4],
+                        assesment];
+    } else if (questions.count-1 >= 3) {
+        returnString =  [NSString stringWithFormat:@"%@ \n (A) %@ \n (B) %@ \n (C) %@ \n %@",
+                        [questions objectAtIndex: 0],
+                        [questions objectAtIndex: 1],
+                        [questions objectAtIndex: 2],
+                        [questions objectAtIndex: 3],
+                        assesment];
+    } else {
+        returnString =  [NSString stringWithFormat:@"%@ \n (A) %@ \n (B) %@ \n %@",
+                        [questions objectAtIndex: 0],
+                        [questions objectAtIndex: 1],
+                        [questions objectAtIndex: 2],
+                        assesment];
+    }
+
+    return returnString;
 }
 
 

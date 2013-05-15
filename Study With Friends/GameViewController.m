@@ -100,6 +100,19 @@ BOOL gamePaused;
     [self.pauseButton setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
     
     [self.pauseButton setTitle:@"Pause" forState:UIControlStateNormal];
+    
+    NSArray *temp = [self.gameDelegate.questionSet objectAtIndex:0];
+    
+    if (temp.count-1 < 4) {
+        self.dButton.hidden = YES;
+        self.dOption.hidden = YES;
+    }
+    if (temp.count-1 < 3) {
+        self.cButton.hidden = YES;
+        self.cOption.hidden = YES;
+    }
+    
+    
 }
 
 
@@ -171,18 +184,37 @@ BOOL gamePaused;
 
 - (IBAction)swipeBack:(UISwipeGestureRecognizer *)sender {
     //if user has hit start...
-    if(inGame && !self.gameDelegate.played){
+    if(inGame && !self.gameDelegate.played && !gamePaused){
         //user cannot hit back on question 1
         if(questionNumber > 1) {
             //moves back a question
             questionNumber = questionNumber - 1;
             [self changeQuestionsAndAnswers: questionNumber];
             
-            if (sender.state == UIGestureRecognizerStateEnded) {
+            if (sender.state == UIGestureRecognizerStateEnded ) {
                 [UIView beginAnimations:nil context:NULL];
                 [UIView setAnimationDuration:0.5];
+                [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
                 [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.view cache:YES];
                 [UIView commitAnimations];
+            }
+            
+            NSArray *temp = [self.gameDelegate.questionSet objectAtIndex:questionNumber-1];
+            if (temp.count-1 > 3) {
+                self.dButton.hidden = NO;
+                self.dOption.hidden = NO;
+            }
+            if (temp.count-1 < 4) {
+                self.dButton.hidden = YES;
+                self.dOption.hidden = YES;
+            }
+            if (temp.count-1 > 2) {
+                self.cButton.hidden = NO;
+                self.cOption.hidden = NO;
+            }
+            if (temp.count-1 < 3) {
+                self.cButton.hidden = YES;
+                self.cOption.hidden = YES;
             }
             
             //highlights appropriate button
@@ -206,7 +238,7 @@ BOOL gamePaused;
 
 - (IBAction)swipeNext:(UISwipeGestureRecognizer *)sender {
     //if user has hit start
-    if(inGame && !self.gameDelegate.played) {
+    if(inGame && !self.gameDelegate.played && !gamePaused) {
         //user cannot hit next on final question
         
         if(questionNumber < self.gameDelegate.amtQuestions) {
@@ -219,6 +251,25 @@ BOOL gamePaused;
                 [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
                 [UIView commitAnimations];
             }
+            
+            NSArray *temp = [self.gameDelegate.questionSet objectAtIndex:questionNumber-1];
+            if (temp.count-1 > 3) {
+                self.dButton.hidden = NO;
+                self.dOption.hidden = NO;
+            }
+            if (temp.count-1 < 4) {
+                self.dButton.hidden = YES;
+                self.dOption.hidden = YES;
+            }
+            if (temp.count-1 > 2) {
+                self.cButton.hidden = NO;
+                self.cOption.hidden = NO;
+            }
+            if (temp.count-1 < 3) {
+                self.cButton.hidden = YES;
+                self.cOption.hidden = YES;
+            }
+            
             //highlight appropriate button
             if(self.answers) {
                 NSString *answerPicked = [self.answers objectAtIndex:questionNumber-1];
@@ -274,12 +325,19 @@ BOOL gamePaused;
             gamePaused = TRUE;
             [sender setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
             [sender setTitle:@"Resume" forState:UIControlStateNormal];
+            self.questionTextDisplay.text = @"Paused";
+            self.aOption.text = @"Paused";
+            self.bOption.text = @"Paused";
+            self.cOption.text = @"Paused";
+            self.dOption.text = @"Paused";
         }
         else {
             timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(countDown) userInfo:nil repeats:YES];
             gamePaused = FALSE;
             [sender setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
             [sender setTitle:@"Pause" forState:UIControlStateNormal];
+            [self changeQuestionsAndAnswers:questionNumber];
+            
         }
     }
 }
@@ -321,11 +379,16 @@ BOOL gamePaused;
     NSString *bAnswer = [[self.gameDelegate.questionSet objectAtIndex:number] objectAtIndex:2];
     self.bOption.text = bAnswer;
     
-    NSString *cAnswer = [[self.gameDelegate.questionSet objectAtIndex:number] objectAtIndex:3];
-    self.cOption.text = cAnswer;
-    
-    NSString *dAnswer = [[self.gameDelegate.questionSet objectAtIndex:number] objectAtIndex:4];
-    self.dOption.text = dAnswer;
+    NSArray *temp = [self.gameDelegate.questionSet objectAtIndex:questionNumber-1];
+    if (temp.count-1 > 2) {
+        NSString *cAnswer = [[self.gameDelegate.questionSet objectAtIndex:number] objectAtIndex:3];
+        self.cOption.text = cAnswer;
+        
+        if (temp.count-1 > 3) {
+            NSString *dAnswer = [[self.gameDelegate.questionSet objectAtIndex:number] objectAtIndex:4];
+            self.dOption.text = dAnswer;
+        }
+    }
     
 }
 

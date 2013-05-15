@@ -68,7 +68,8 @@
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil, nil];
         [alert show];
-
+        self.gameLabel3.text = nil;
+        self.percentLabel.text = @"0%";
     }
 
     self.gameLabel1.text = [NSString stringWithFormat:@"Total Questions Answered: %d", (int)total];
@@ -76,14 +77,13 @@
     self.gameLabel3.text = [NSString stringWithFormat:@"Games played: %d", gamesPlayed];
     
     fraction = fraction / total;
-    
+
     if (gamesPlayed)
-        self.percentLabel.text = [NSString stringWithFormat:@"%d%%", (int)(100 *fraction)];
+        self.percentLabel.text = [NSString stringWithFormat:@"%d%%", (int)(100 * fraction)];
     
 	[self.pieChart addItemValue:fraction withColor:PieChartItemColorMake(0.5, 1.0, 0.5, 0.8)];
 	[self.pieChart addItemValue:1-fraction withColor:PieChartItemColorMake(1.0, 0.1, 0.1, 1.0)];
 
-    
     [self.pieChart setNeedsDisplay];
 
 }

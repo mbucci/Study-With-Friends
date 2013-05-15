@@ -75,7 +75,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([sender isKindOfClass:[UITableViewCell class] ]) {
+    if ([sender isKindOfClass:[UITableViewCell class]]) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         if (indexPath) {
             if ([segue.destinationViewController isKindOfClass:[GameViewController class]]) {
@@ -87,7 +87,7 @@
             if ([segue.destinationViewController isKindOfClass:[ResultsViewController class]]) {
                 ResultsViewController *RVC = [segue destinationViewController];
             
-                Game *temp = [self.userDelegate.userGames.games objectAtIndex:indexPath.row];
+                Game *temp = [self.userDelegate.userGames getGameForIndex:indexPath.row andSection:indexPath.section];
                 RVC.userAnswers = temp.userAnswers;
                 RVC.gamePlayed = temp;
                 RVC.gameIndex = indexPath.row;
@@ -166,8 +166,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    Game *temp = [self.userDelegate.userGames.games objectAtIndex:section];
-    return temp.course;
+    return [self.userDelegate.userGames getCourseForCourseSection:section];
 }
 
 
@@ -199,19 +198,28 @@
 }
 */
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
+        Game *gameToRemove = [self.userDelegate.userGames getGameForIndex:indexPath.row andSection:indexPath.section];
+        [self.userDelegate.userGames.games removeObject:gameToRemove];
+        [self.tableView beginUpdates]; {
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            if ([self.tableView numberOfRowsInSection:indexPath.section] == 1) {
+                [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationLeft];
+            }
+        }
+        [self.tableView endUpdates];
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
+
 /*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath

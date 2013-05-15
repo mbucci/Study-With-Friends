@@ -19,6 +19,8 @@
         Game *game1 = [[Game alloc]init];
         Game *game2 = [[Game alloc]init];
         Game *game3 = [[Game alloc]init];
+        Game *game4 = [[Game alloc]init];
+        Game *game5 = [[Game alloc]init];
         _games = [[NSMutableArray alloc]init];
         
         NSMutableArray *question1, *question2, *question3, *question4, *question5;
@@ -123,8 +125,7 @@
         [question10 addObject:@"What is 2 x 2?"];
         [question10 addObject: @"5"];
         [question10 addObject: @"4"];
-        [question10 addObject: @"8"];
-        [question10 addObject: @"1"];
+        //[question10 addObject: @"8"];
         
         [question11 addObject:@"What is 3 x 7?"];
         [question11 addObject: @"21"];
@@ -136,16 +137,13 @@
         [question12 addObject: @"14"];
         [question12 addObject: @"36"];
         [question12 addObject: @"48"];
-        [question12 addObject: @"24"];
         
         [question13 addObject:@"What is 11 x 11?"];
-        [question13 addObject: @"101"];
         [question13 addObject: @"99"];
-        [question13 addObject: @"211"];
         [question13 addObject: @"121"];
         
         NSArray *questions3 = [[NSArray alloc] initWithObjects:question10, question11, question12, question13, nil];
-        NSArray *answerSet3 = [[NSArray alloc] initWithObjects:@"B", @"A", @"C", @"D", nil];
+        NSArray *answerSet3 = [[NSArray alloc] initWithObjects:@"B", @"A", @"C", @"B", nil];
         
         
         
@@ -156,6 +154,84 @@
                             andGameLength:60];
         
         [self addGame:game3];
+        
+        NSMutableArray *question14, *question15, *question16, *question17;
+        question14 = [[NSMutableArray alloc] init];
+        question15 = [[NSMutableArray alloc] init];
+        question16 = [[NSMutableArray alloc] init];
+        question17 = [[NSMutableArray alloc] init];
+        
+        [question14 addObject:@"What is 2 x 2?"];
+        [question14 addObject: @"5"];
+        [question14 addObject: @"4"];
+        //[question10 addObject: @"8"];
+        
+        [question15 addObject:@"What is 3 x 7?"];
+        [question15 addObject: @"21"];
+        [question15 addObject: @"14"];
+        [question15 addObject: @"10"];
+        [question15 addObject: @"28"];
+        
+        [question16 addObject:@"What is 6 x 8?"];
+        [question16 addObject: @"14"];
+        [question16 addObject: @"36"];
+        [question16 addObject: @"48"];
+        
+        [question17 addObject:@"What is 11 x 11?"];
+        [question17 addObject: @"99"];
+        [question17 addObject: @"121"];
+        
+        NSArray *questions4 = [[NSArray alloc] initWithObjects:question10, question11, question12, question13, nil];
+        NSArray *answerSet4 = [[NSArray alloc] initWithObjects:@"B", @"A", @"C", @"B", nil];
+        
+        
+        
+        game4 = [Game createGameWithTitle:@"Test Game"
+                                   Course:@"Basic Math"
+                                Questions:questions4
+                                  Answers:answerSet4
+                            andGameLength:60];
+        
+        [self addGame:game4];
+        
+        NSMutableArray *question18, *question19, *question20, *question21;
+        question18 = [[NSMutableArray alloc] init];
+        question19 = [[NSMutableArray alloc] init];
+        question20 = [[NSMutableArray alloc] init];
+        question21 = [[NSMutableArray alloc] init];
+        
+        [question18 addObject:@"What is 2 x 2?"];
+        [question18 addObject: @"5"];
+        [question18 addObject: @"4"];
+        //[question10 addObject: @"8"];
+        
+        [question19 addObject:@"What is 3 x 7?"];
+        [question19 addObject: @"21"];
+        [question19 addObject: @"14"];
+        [question19 addObject: @"10"];
+        [question19 addObject: @"28"];
+        
+        [question20 addObject:@"What is 6 x 8?"];
+        [question20 addObject: @"14"];
+        [question20 addObject: @"36"];
+        [question20 addObject: @"48"];
+        
+        [question21 addObject:@"What is 11 x 11?"];
+        [question21 addObject: @"99"];
+        [question21 addObject: @"121"];
+        
+        NSArray *questions5 = [[NSArray alloc] initWithObjects:question10, question11, question12, question13, nil];
+        NSArray *answerSet5 = [[NSArray alloc] initWithObjects:@"B", @"A", @"C", @"B", nil];
+        
+        
+        
+        game5 = [Game createGameWithTitle:@"Test Game 2"
+                                   Course:@"Math 161"
+                                Questions:questions5
+                                  Answers:answerSet5
+                            andGameLength:60];
+        
+        [self addGame:game5];
         
     }
     return _games;

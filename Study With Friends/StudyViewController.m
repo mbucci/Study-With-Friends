@@ -101,6 +101,7 @@
         NSArray *keys = [NSArray arrayWithObjects:@"mbucci", @"syounes", @"apensava", nil];
         _users = [[NSMutableDictionary alloc]initWithObjects:userArray forKeys:keys];
     }
+    
     return _users;
 }
 
