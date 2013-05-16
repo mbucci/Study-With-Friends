@@ -8,6 +8,7 @@
 //
 
 #import "StudyViewController.h"
+#import "MakeNewGameViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface StudyViewController ()
@@ -117,6 +118,7 @@
 {
     CoursesTableViewController *CTVC = [[CoursesTableViewController alloc] init];
     StatisticsViewController *SVC = [[StatisticsViewController alloc]init];
+    MakeNewGameViewController *MNGVC = [[MakeNewGameViewController alloc]init];
     UITabBarController *TBC = [[UITabBarController alloc]init];
     if ([[segue destinationViewController] isKindOfClass:[UITabBarController class]]){
         TBC = [segue destinationViewController];
@@ -129,6 +131,10 @@
             if ([obj isKindOfClass:[StatisticsViewController class]]) {
                 SVC = obj;
                 SVC.statisticsGamesDelegate = temp.userGames.games;
+            }
+            if ([obj isKindOfClass:[MakeNewGameViewController class]]) {
+                MNGVC = obj;
+                MNGVC.gamesDelegate = temp.userGames;
             }
         }
     }

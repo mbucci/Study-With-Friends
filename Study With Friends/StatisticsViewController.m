@@ -17,6 +17,9 @@
 @synthesize pieChart = _pieChart;
 @synthesize gameLabel1 = _gameLabel1;
 @synthesize gameLabel2 = _gameLabel2;
+@synthesize gameLabel3 = _gameLabel3;
+@synthesize percentLabel = _percentLabel;
+@synthesize statisticsGamesDelegate = _statisticsGamesDelegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,7 +29,6 @@
     }
     return self;
 }
-
 
 
 //Drawing of PieChart courtesy of Dain Kaplan via Chartreuse.com and StackOverflow.com

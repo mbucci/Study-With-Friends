@@ -19,6 +19,9 @@
 @property NSMutableArray *userAnswers;
 @property int courseSection;
 
+-(BOOL) enteredTitle: (NSString*)enteredTitle;
+-(BOOL) stringIsNumber: (NSString*) string;
+-(NSString*) getAlertMessage: (NSMutableArray*) incorrectEntries;
 - (int)getAmountCorrect:(NSMutableArray*) userAnswers;
 + (Game *)createGameWithTitle:(NSString *)gameTitle
                        Course:(NSString *)course

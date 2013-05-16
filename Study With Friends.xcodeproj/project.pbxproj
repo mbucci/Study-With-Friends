@@ -26,6 +26,10 @@
 		7DA186EE173831EF00762EDC /* StudyGames.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DA186ED173831EF00762EDC /* StudyGames.m */; };
 		7DAA2DF3174313470081F31B /* UserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DAA2DF2174313460081F31B /* UserProfile.m */; };
 		7DAB3BC1171D969100766B06 /* CoursesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DAB3BC0171D969100766B06 /* CoursesTableViewController.m */; };
+		7DBC77B2174468FF0054F748 /* ColorsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC77B1174468FF0054F748 /* ColorsModel.m */; };
+		7DBC77B7174469140054F748 /* MakeNewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC77B4174469140054F748 /* MakeNewGameViewController.m */; };
+		7DBC77B8174469140054F748 /* MakeNewQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC77B6174469140054F748 /* MakeNewQuestionsViewController.m */; };
+		7DBC77C217446AFC0054F748 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DBC77C117446AFC0054F748 /* QuartzCore.framework */; };
 		7DE25749172863A00076058E /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE25746172863A00076058E /* Game.m */; };
 		7DE2574A172863A00076058E /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE25748172863A00076058E /* GameViewController.m */; };
 		7DE25753172863B00076058E /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE2574F172863B00076058E /* ResultsViewController.m */; };
@@ -64,6 +68,13 @@
 		7DAA2DF2174313460081F31B /* UserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfile.m; sourceTree = "<group>"; };
 		7DAB3BBF171D969100766B06 /* CoursesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoursesTableViewController.h; sourceTree = "<group>"; };
 		7DAB3BC0171D969100766B06 /* CoursesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoursesTableViewController.m; sourceTree = "<group>"; };
+		7DBC77B0174468FF0054F748 /* ColorsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorsModel.h; sourceTree = "<group>"; };
+		7DBC77B1174468FF0054F748 /* ColorsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorsModel.m; sourceTree = "<group>"; };
+		7DBC77B3174469140054F748 /* MakeNewGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MakeNewGameViewController.h; sourceTree = "<group>"; };
+		7DBC77B4174469140054F748 /* MakeNewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MakeNewGameViewController.m; sourceTree = "<group>"; };
+		7DBC77B5174469140054F748 /* MakeNewQuestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MakeNewQuestionsViewController.h; sourceTree = "<group>"; };
+		7DBC77B6174469140054F748 /* MakeNewQuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MakeNewQuestionsViewController.m; sourceTree = "<group>"; };
+		7DBC77C117446AFC0054F748 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7DE25745172863A00076058E /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		7DE25746172863A00076058E /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		7DE25747172863A00076058E /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
@@ -83,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DBC77C217446AFC0054F748 /* QuartzCore.framework in Frameworks */,
 				7D3F9E6417297BBF009C969B /* CoreData.framework in Frameworks */,
 				2AE2BDDA17123993004BCBA5 /* UIKit.framework in Frameworks */,
 				2AE2BDDC17123993004BCBA5 /* Foundation.framework in Frameworks */,
@@ -113,6 +125,7 @@
 		2AE2BDD817123993004BCBA5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7DBC77C117446AFC0054F748 /* QuartzCore.framework */,
 				7D3F9E6317297BBF009C969B /* CoreData.framework */,
 				2AE2BDD917123993004BCBA5 /* UIKit.framework */,
 				2AE2BDDB17123993004BCBA5 /* Foundation.framework */,
@@ -128,26 +141,9 @@
 				7D1AFF8A171F6EFF001FA407 /* GamesAndCourses.xcdatamodeld */,
 				2AE2BDE817123993004BCBA5 /* StudyAppDelegate.h */,
 				2AE2BDE917123993004BCBA5 /* StudyAppDelegate.m */,
-				2AE2BDF417123993004BCBA5 /* StudyViewController.h */,
-				2AE2BDF517123993004BCBA5 /* StudyViewController.m */,
-				7DAB3BBF171D969100766B06 /* CoursesTableViewController.h */,
-				7DAB3BC0171D969100766B06 /* CoursesTableViewController.m */,
-				7DE25747172863A00076058E /* GameViewController.h */,
-				7DE25748172863A00076058E /* GameViewController.m */,
-				7DE2574E172863B00076058E /* ResultsViewController.h */,
-				7DE2574F172863B00076058E /* ResultsViewController.m */,
-				7DEBEB9717394D61007D162E /* StatisticsViewController.h */,
-				7DEBEB9817394D61007D162E /* StatisticsViewController.m */,
-				7DA186EC173831EF00762EDC /* StudyGames.h */,
-				7DA186ED173831EF00762EDC /* StudyGames.m */,
-				7DE25745172863A00076058E /* Game.h */,
-				7DE25746172863A00076058E /* Game.m */,
-				7D7375061718A413007BC02D /* Login.h */,
-				7D7375071718A413007BC02D /* Login.m */,
-				7DAA2DF1174313460081F31B /* UserProfile.h */,
-				7DAA2DF2174313460081F31B /* UserProfile.m */,
-				7DFDFD0C1740228E0087A530 /* PieChartView.h */,
-				7DFDFD0D1740228E0087A530 /* PieChartView.m */,
+				7D98D969174437210024D314 /* ViewControllers */,
+				7D98D96A1744375E0024D314 /* Models */,
+				7D98D96B1744378A0024D314 /* Views */,
 				2AE2BDE017123993004BCBA5 /* Supporting Files */,
 			);
 			path = "Study With Friends";
@@ -169,6 +165,53 @@
 				2AE2BDEF17123993004BCBA5 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7D98D969174437210024D314 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2AE2BDF417123993004BCBA5 /* StudyViewController.h */,
+				2AE2BDF517123993004BCBA5 /* StudyViewController.m */,
+				7DAB3BBF171D969100766B06 /* CoursesTableViewController.h */,
+				7DAB3BC0171D969100766B06 /* CoursesTableViewController.m */,
+				7DE25747172863A00076058E /* GameViewController.h */,
+				7DE25748172863A00076058E /* GameViewController.m */,
+				7DE2574E172863B00076058E /* ResultsViewController.h */,
+				7DE2574F172863B00076058E /* ResultsViewController.m */,
+				7DEBEB9717394D61007D162E /* StatisticsViewController.h */,
+				7DEBEB9817394D61007D162E /* StatisticsViewController.m */,
+				7DBC77B3174469140054F748 /* MakeNewGameViewController.h */,
+				7DBC77B4174469140054F748 /* MakeNewGameViewController.m */,
+				7DBC77B5174469140054F748 /* MakeNewQuestionsViewController.h */,
+				7DBC77B6174469140054F748 /* MakeNewQuestionsViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		7D98D96A1744375E0024D314 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7DE25745172863A00076058E /* Game.h */,
+				7DE25746172863A00076058E /* Game.m */,
+				7D7375061718A413007BC02D /* Login.h */,
+				7D7375071718A413007BC02D /* Login.m */,
+				7DAA2DF1174313460081F31B /* UserProfile.h */,
+				7DAA2DF2174313460081F31B /* UserProfile.m */,
+				7DA186EC173831EF00762EDC /* StudyGames.h */,
+				7DA186ED173831EF00762EDC /* StudyGames.m */,
+				7DBC77B0174468FF0054F748 /* ColorsModel.h */,
+				7DBC77B1174468FF0054F748 /* ColorsModel.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		7D98D96B1744378A0024D314 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7DFDFD0D1740228E0087A530 /* PieChartView.m */,
+				7DFDFD0C1740228E0087A530 /* PieChartView.h */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +298,9 @@
 				7DEBEB9917394D61007D162E /* StatisticsViewController.m in Sources */,
 				7DFDFD0E1740228E0087A530 /* PieChartView.m in Sources */,
 				7DAA2DF3174313470081F31B /* UserProfile.m in Sources */,
+				7DBC77B2174468FF0054F748 /* ColorsModel.m in Sources */,
+				7DBC77B7174469140054F748 /* MakeNewGameViewController.m in Sources */,
+				7DBC77B8174469140054F748 /* MakeNewQuestionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -175,6 +175,8 @@
     Game *temp = [self.userDelegate.userGames getGameForIndex:indexPath.row andSection:indexPath.section];
     static NSString *CellIdentifier = @"Courses";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    cell.textLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+    cell.textLabel.numberOfLines = 1;
     
     cell.textLabel.text = [self titleForRow:indexPath.row AndSection:indexPath.section];
     cell.detailTextLabel.text = [self subtitleForRow:indexPath.row AndSection:indexPath.section];
@@ -206,11 +208,11 @@
         // Delete the row from the data source
         Game *gameToRemove = [self.userDelegate.userGames getGameForIndex:indexPath.row andSection:indexPath.section];
         [self.userDelegate.userGames.games removeObject:gameToRemove];
-        [self.tableView beginUpdates]; {
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-            if ([self.tableView numberOfRowsInSection:indexPath.section] == 1) {
-                [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationLeft];
-            }
+        [self.tableView beginUpdates];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        if ([self.tableView numberOfRowsInSection:indexPath.section] == 1) {
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationLeft];
+            [self.userDelegate.userGames decrementCourseSelectionsBeyondSection:indexPath.section];
         }
         [self.tableView endUpdates];
     }

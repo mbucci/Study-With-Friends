@@ -20,6 +20,7 @@
 -(int)getNumberOfCourses;
 -(NSString *)getCourseForCourseSection:(int)section;
 -(int)getCourseSectionForCourse:(NSString *)course;
+-(void)decrementCourseSelectionsBeyondSection:(int)section;
 
 
 @end

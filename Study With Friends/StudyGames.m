@@ -108,7 +108,7 @@
         
         
         
-        game2 = [Game createGameWithTitle:@"Calculus"
+        game2 = [Game createGameWithTitle:@"Derivatives and Integrals"
                                    Course:@"Math 161"
                                 Questions:questions2
                                   Answers:answerSet2
@@ -125,7 +125,6 @@
         [question10 addObject:@"What is 2 x 2?"];
         [question10 addObject: @"5"];
         [question10 addObject: @"4"];
-        //[question10 addObject: @"8"];
         
         [question11 addObject:@"What is 3 x 7?"];
         [question11 addObject: @"21"];
@@ -161,33 +160,34 @@
         question16 = [[NSMutableArray alloc] init];
         question17 = [[NSMutableArray alloc] init];
         
-        [question14 addObject:@"What is 2 x 2?"];
-        [question14 addObject: @"5"];
-        [question14 addObject: @"4"];
-        //[question10 addObject: @"8"];
+        [question14 addObject:@"Who Was the 16th President of the United States?"];
+        [question14 addObject: @"George Washington"];
+        [question14 addObject: @"Abraham Lincoln"];
+        [question14 addObject: @"Thomas Jefferson"];
+        [question14 addObject: @"Benjamin Franklin"];
         
-        [question15 addObject:@"What is 3 x 7?"];
-        [question15 addObject: @"21"];
-        [question15 addObject: @"14"];
-        [question15 addObject: @"10"];
-        [question15 addObject: @"28"];
+        [question15 addObject:@"On what day did the Japanese attack Pearl Harbor?"];
+        [question15 addObject: @"July 4th 1863"];
+        [question15 addObject: @"December 25th 1902"];
+        [question15 addObject: @"December 7th 1941"];
+        [question15 addObject: @"April 1 2001"];
         
-        [question16 addObject:@"What is 6 x 8?"];
-        [question16 addObject: @"14"];
-        [question16 addObject: @"36"];
-        [question16 addObject: @"48"];
+        [question16 addObject:@"Who assassinated Abraham Licoln?"];
+        [question16 addObject: @"John Wilkes Booth"];
+        [question16 addObject: @"Benedict Arnold"];
+        [question16 addObject: @"Robert E. Lee"];
         
-        [question17 addObject:@"What is 11 x 11?"];
-        [question17 addObject: @"99"];
-        [question17 addObject: @"121"];
+        [question17 addObject:@"Who was the president during WWII?"];
+        [question17 addObject: @"Franklin Delano Roosevelt"];
+        [question17 addObject: @"Theodore Roosevelt"];
         
-        NSArray *questions4 = [[NSArray alloc] initWithObjects:question10, question11, question12, question13, nil];
-        NSArray *answerSet4 = [[NSArray alloc] initWithObjects:@"B", @"A", @"C", @"B", nil];
+        NSArray *questions4 = [[NSArray alloc] initWithObjects:question14, question15, question16, question17, nil];
+        NSArray *answerSet4 = [[NSArray alloc] initWithObjects:@"B", @"C", @"A", @"A", nil];
         
         
         
-        game4 = [Game createGameWithTitle:@"Test Game"
-                                   Course:@"Basic Math"
+        game4 = [Game createGameWithTitle:@"Presidents and Wars"
+                                   Course:@"American History"
                                 Questions:questions4
                                   Answers:answerSet4
                             andGameLength:60];
@@ -200,36 +200,36 @@
         question20 = [[NSMutableArray alloc] init];
         question21 = [[NSMutableArray alloc] init];
         
-        [question18 addObject:@"What is 2 x 2?"];
-        [question18 addObject: @"5"];
-        [question18 addObject: @"4"];
-        //[question10 addObject: @"8"];
+        [question18 addObject:@"What is the equation for classical kinetic energy?"];
+        [question18 addObject: @"mv^2"];
+        [question18 addObject: @"1/2mv^2"];
+        [question18 addObject: @"mv"];
         
-        [question19 addObject:@"What is 3 x 7?"];
-        [question19 addObject: @"21"];
-        [question19 addObject: @"14"];
-        [question19 addObject: @"10"];
-        [question19 addObject: @"28"];
+        [question19 addObject:@"What is work?"];
+        [question19 addObject: @"Force / Distance"];
+        [question19 addObject: @"Force * Distance^2"];
+        [question19 addObject: @"1/2 Force * Distance"];
+        [question19 addObject: @"Force * Distance"];
         
-        [question20 addObject:@"What is 6 x 8?"];
-        [question20 addObject: @"14"];
-        [question20 addObject: @"36"];
-        [question20 addObject: @"48"];
+        [question20 addObject:@"On what scale is the visible light spectrum?"];
+        [question20 addObject: @"100 - 800 nm"];
+        [question20 addObject: @"10 - 80 mm"];
+        [question20 addObject: @"1 - 8 m"];
         
-        [question21 addObject:@"What is 11 x 11?"];
-        [question21 addObject: @"99"];
-        [question21 addObject: @"121"];
+        [question21 addObject:@"What does the area under the velocity curve represent?"];
+        [question21 addObject: @"Acceleration"];
+        [question21 addObject: @"Distance traveled"];
         
-        NSArray *questions5 = [[NSArray alloc] initWithObjects:question10, question11, question12, question13, nil];
-        NSArray *answerSet5 = [[NSArray alloc] initWithObjects:@"B", @"A", @"C", @"B", nil];
+        NSArray *questions5 = [[NSArray alloc] initWithObjects:question18, question19, question20, question21, nil];
+        NSArray *answerSet5 = [[NSArray alloc] initWithObjects:@"B", @"D", @"A", @"B", nil];
         
         
         
-        game5 = [Game createGameWithTitle:@"Test Game 2"
-                                   Course:@"Math 161"
+        game5 = [Game createGameWithTitle:@"Physics Mashup"
+                                   Course:@"Physics 101"
                                 Questions:questions5
                                   Answers:answerSet5
-                            andGameLength:60];
+                            andGameLength:45];
         
         [self addGame:game5];
         
@@ -306,6 +306,20 @@
         }
     }
     return [gameArray objectAtIndex:index];
+}
+
+
+-(void)decrementCourseSelectionsBeyondSection:(int)section
+{
+    for (int i = section+1; i <= [self getNumberOfCourses]; i++) {
+        NSString *course = [self getCourseForCourseSection:i];
+        for (id obj in self.games) {
+            Game *temp = obj;
+            if ([temp.course isEqualToString:course]) {
+                temp.courseSection--;
+            }
+        }
+    }
 }
 
 
