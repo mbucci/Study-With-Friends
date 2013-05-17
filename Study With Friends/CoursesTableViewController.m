@@ -37,16 +37,6 @@
     self.controllersNavigationBar = [self.navigationController.navigationBar.items lastObject];
     self.controllersNavigationBar.title = @"Play Game";
     
-    /*
-    NSArray *controllers =  self.tabBarController.viewControllers;
-    StatisticsViewController *SVC = [[StatisticsViewController alloc]init];
-    for (id obj in controllers) {
-        if ([obj isKindOfClass:[StatisticsViewController class]]) {
-            SVC = obj;
-            SVC.statisticsGamesDelegate = self.userDelegate.userGames.games;
-        }
-    }
-     */
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ColorsModel : NSObject
+@interface ColorsModel : NSObject 
 
-@property (weak, nonatomic) UIColor *secondaryOutline;
-@property (weak, nonatomic) UIColor *bottomButtonTopColor;
-@property (weak, nonatomic) UIColor *bottomButtonBottomColor;
+-(UIColor*) secondaryOutline;
+-(UIColor*) addButtonTopColor;
+-(UIColor*) addButtonBottomColor;
+-(UIColor*) deleteButtonTopColor;
+-(UIColor*) deleteButtonBottomColor;
 
 @end

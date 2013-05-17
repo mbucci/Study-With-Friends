@@ -245,6 +245,7 @@
     for (id obj in coursesSet) {
         if ([obj isEqualToString:newGame.course]) {
             newGame.courseSection = [self getCourseSectionForCourse:obj];
+            break;
         } else {
             newGame.courseSection = coursesSet.count;
         }

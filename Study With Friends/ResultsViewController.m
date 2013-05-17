@@ -14,6 +14,7 @@
 
 @interface ResultsViewController () 
 
+@property (strong, nonatomic) NSArray *lettersForNumbers;
 
 @end
 
@@ -27,6 +28,7 @@
 @synthesize questionsDisplay;
 @synthesize gameIndex = _gameIndex;
 @synthesize mainMenuButton = _mainMenuButton;
+@synthesize lettersForNumbers = _lettersForNumbers;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -59,7 +61,7 @@
     for (int i = 0; i < self.gamePlayed.amtQuestions; i++) {
         UILabel *question;
         question = [[UILabel alloc] initWithFrame: CGRectMake(0, QUESTION_HEIGHT*i, 320, QUESTION_HEIGHT)];
-        question.numberOfLines = self.gamePlayed.amtQuestions + 2;
+        question.numberOfLines = [[self.gamePlayed.questionSet objectAtIndex:i] count] + 2;
         question.font = [UIFont fontWithName:@"STHeitiTC-Medium" size:17.0];
         
         NSString *questionAssesment = [NSString stringWithFormat: @"You chose %@; the correct answer is %@.",
@@ -76,41 +78,48 @@
 }
 
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    self.navigationItem.title = @"Results";
+    [questionsDisplay flashScrollIndicators];
+}
+
+
+- (NSArray *)lettersForNumbers
+{
+    if (!_lettersForNumbers)  {
+        _lettersForNumbers = [NSArray arrayWithObjects:@"", @"A", @"B", @"C", @"D", nil];
+    }
+    return _lettersForNumbers;
+}
+
+
+
+
 -(NSString *)returnStringForQuestionSet:(NSArray *)questions andQuestionAssesment:(NSString *)assesment
 {
     NSString *returnString;
-    
-    if (questions.count-1 >= 4){
-        returnString =  [NSString stringWithFormat:@"%@ \n (A) %@ \n (B) %@ \n (C) %@ \n (D) %@ \n %@",
-                        [questions objectAtIndex: 0],
-                        [questions objectAtIndex: 1],
-                        [questions objectAtIndex: 2],
-                        [questions objectAtIndex: 3],
-                        [questions objectAtIndex: 4],
-                        assesment];
-    } else if (questions.count-1 >= 3) {
-        returnString =  [NSString stringWithFormat:@"%@ \n (A) %@ \n (B) %@ \n (C) %@ \n %@",
-                        [questions objectAtIndex: 0],
-                        [questions objectAtIndex: 1],
-                        [questions objectAtIndex: 2],
-                        [questions objectAtIndex: 3],
-                        assesment];
-    } else {
-        returnString =  [NSString stringWithFormat:@"%@ \n (A) %@ \n (B) %@ \n %@",
-                        [questions objectAtIndex: 0],
-                        [questions objectAtIndex: 1],
-                        [questions objectAtIndex: 2],
-                        assesment];
+    returnString = [[NSString alloc] init];
+    for(int i = 0; i < [questions count]; i++) {
+        NSString *string = [questions objectAtIndex:i];
+        //question
+        if(i == 0) {
+            returnString = [returnString stringByAppendingFormat:@"%@ \n", string];
+        }
+        //option
+        else {
+            returnString = [returnString stringByAppendingFormat:@"(%@) %@ \n", [self.lettersForNumbers objectAtIndex: i], string];
+        }
     }
-
+    /*
+     for(NSString *string in questions) {
+     returnString = [returnString stringByAppendingFormat:@"%@ \n", string];
+     }
+     */
+    returnString = [returnString stringByAppendingFormat: @"%@", assesment];
     return returnString;
 }
 
-
--(void)viewDidAppear:(BOOL)animated
-{
-    [questionsDisplay flashScrollIndicators];
-}
 
 - (void)setLayerToButton:(UIButton *)button
 {

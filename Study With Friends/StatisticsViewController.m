@@ -21,6 +21,7 @@
 @synthesize percentLabel = _percentLabel;
 @synthesize statisticsGamesDelegate = _statisticsGamesDelegate;
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

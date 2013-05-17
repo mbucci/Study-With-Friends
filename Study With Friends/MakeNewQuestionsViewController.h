@@ -11,12 +11,17 @@
 #import "StudyGames.h"
 
 
-@interface MakeNewQuestionsViewController : UIViewController <UITextViewDelegate> {
-    NSString *gameTitle;
-}
+@interface MakeNewQuestionsViewController : UIViewController <UITextViewDelegate>
 
-
+//property for game information
 @property (strong, nonatomic) NSString *gameTitle;
+@property (strong, nonatomic) NSString *courseName;
+@property (nonatomic) int gameLength;
+@property (strong, nonatomic) NSMutableArray *optionNumbers;
+@property (strong, nonatomic) NSMutableArray *tempQuestionSet;
+@property (strong, nonatomic) NSMutableArray *tempAnswerKey;
+@property (strong, nonatomic) NSMutableArray *finalQuestionSet;
+@property (strong, nonatomic) NSMutableArray *finalAnswerKey;
 
 //buttons
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *back;
@@ -51,7 +56,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *saveOutlet;
 @property (weak, nonatomic) IBOutlet UIButton *makeOutlet;
 
-@property (retain, nonatomic) StudyGames *gamesToAddToo;
+@property (retain, nonatomic) StudyGames *gamesToAddTo;
+@property (nonatomic) BOOL gameCreated;
 
 - (IBAction)makeGame:(UIButton *)sender;
 
@@ -59,6 +65,7 @@
 - (IBAction)revertQuestion:(UIButton *)sender;
 - (IBAction)backButton:(UIBarButtonItem *)sender;
 - (IBAction)nextButton:(UIBarButtonItem *)sender;
+- (IBAction)exit:(id)sender;
 
 
 //"question saved" label

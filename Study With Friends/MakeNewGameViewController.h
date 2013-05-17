@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Game.h"
+#import "QuestionsModel.h"
 #import "StudyGames.h"
 
 @interface MakeNewGameViewController : UIViewController <UITextFieldDelegate> {
@@ -19,10 +19,12 @@
 
 //properties for text fields on first screen
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
-
+@property (weak, nonatomic) IBOutlet UITextField *courseText;
+@property (weak, nonatomic) IBOutlet UITextField *lengthText;
 @property (strong, nonatomic) NSString *titleString;
-@property (strong, nonatomic) Game *model;
+@property (strong, nonatomic) QuestionsModel *model;
 @property (retain, nonatomic) StudyGames *gamesDelegate;
+@property (weak, nonatomic) IBOutlet UIButton *questionsButton;
 
 
 

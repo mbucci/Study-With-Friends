@@ -44,7 +44,7 @@
     self.password.secureTextEntry = YES;
     self.username.placeholder = @"Username";
     self.password.placeholder = @"Password";
-    self.username.clearsOnBeginEditing = YES;
+    self.username.clearsOnBeginEditing = NO;
     self.password.clearsOnBeginEditing = YES;
     
     [self setLayerToButton:self.loginButton];

@@ -7,13 +7,15 @@
 //
 
 #import "MakeNewQuestionsViewController.h"
+#import "MakeNewGameViewController.h"
+#import "ReviewGameViewController.h"
 #import "ColorsModel.h"
-#import "CoursesTableViewController.h"
+#import "QuestionsModel.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface MakeNewQuestionsViewController ()
 
-@property (nonatomic, strong) Game *model;
+@property (nonatomic, strong) QuestionsModel *model;
 @property (nonatomic, strong) ColorsModel *colorsModel;
 
 @end
@@ -29,7 +31,11 @@
 @synthesize deleteOptionCOutlet, deleteOptionDOutlet;
 @synthesize questionSavedMessage;
 @synthesize gameTitle;
-@synthesize gamesToAddToo = _gamesToAddToo;
+@synthesize courseName;
+@synthesize gameLength;
+@synthesize optionNumbers, tempAnswerKey, tempQuestionSet, finalAnswerKey, finalQuestionSet;
+@synthesize gamesToAddTo = _gamesToAddTo;
+@synthesize gameCreated = _gameCreated;
 
 @synthesize colorsModel;
 
@@ -41,12 +47,6 @@ NSArray *bottomButtonSet;
 NSArray *lettersForNumbers;
 NSArray *deleteButtonSet;
 NSArray *addButtonSet;
-
-NSMutableArray *optionNumbers;
-NSMutableArray *tempQuestionSet;
-NSMutableArray *tempAnswerKey;
-NSMutableArray *finalQuestionSet;
-NSMutableArray *finalAnswerKey;
 
 #define MAX_OPTION_CHARS = 150
 #define MAX_QUESTION_CHARS = 250
@@ -60,9 +60,9 @@ NSMutableArray *finalAnswerKey;
     return lettersForNumbers;
 }
 
--(Game *) model {
+-(QuestionsModel*) model {
     if(!model) {
-        model = [[Game alloc] init];
+        model = [[QuestionsModel alloc] init];
     }
     return model;
 }
@@ -130,6 +130,15 @@ NSMutableArray *finalAnswerKey;
     return finalAnswerKey;
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    ReviewGameViewController *RGVC = [segue destinationViewController];
+    RGVC.gameTitle = self.gameTitle;
+    RGVC.gameLength = self.gameLength;
+    RGVC.courseTitle = self.courseName;
+    RGVC.answerKey = self.finalAnswerKey;
+    RGVC.questionSet = self.finalQuestionSet;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -156,6 +165,14 @@ NSMutableArray *finalAnswerKey;
     NSMutableArray *tempQuestion = [[NSMutableArray alloc] initWithObjects:@"", @"", @"", nil];
     [self.tempQuestionSet addObject: tempQuestion];
     [self.tempAnswerKey addObject: @""];
+    self.gameCreated = NO;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (self.gameCreated) {
+        [self exit:self.deleteOutlet];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -347,44 +364,81 @@ NSMutableArray *finalAnswerKey;
 
 -(void) designButtons {
     for(UIButton *btn in self.bottomButtonSet) {
+        [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
+        
+        [btn setBackgroundColor:[UIColor whiteColor]];
+        btn.layer.cornerRadius = 3.0f;
+        btn.layer.masksToBounds = NO;
+        btn.layer.borderWidth = 1.0f;
+        btn.layer.shadowColor = [UIColor blackColor].CGColor;
+        btn.layer.borderColor = [UIColor grayColor].CGColor;
+        btn.layer.shadowOpacity = 0.8;
+        btn.layer.shadowRadius = 3;
+        btn.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    }
+    //buttons to add options C,D
+    for(UIButton *btn in self.addButtonSet) {
+        UIImage *btnImage = [UIImage imageNamed:@"addSign.png"];
+        [btn setImage:btnImage forState:UIControlStateNormal];
+        
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
         [btn.titleLabel setFont:[UIFont fontWithName:@"Orienta" size:16.0f]];
-                
         
-        // Draw a custom gradient
+        //draw a custom gradient
         CAGradientLayer *btnGradient = [CAGradientLayer layer];
         btnGradient.frame = btn.bounds;
         btnGradient.colors = [NSArray arrayWithObjects:
-                              (id)[[self.colorsModel bottomButtonBottomColor] CGColor],
-                              (id)[[self.colorsModel bottomButtonTopColor] CGColor],
+                              (id)[[self.colorsModel addButtonTopColor] CGColor],
+                              (id)[[self.colorsModel addButtonBottomColor] CGColor],
+                              (id)[[self.colorsModel addButtonTopColor] CGColor],
                               nil];
+        [btnGradient setCornerRadius:6.0f];
         [btn.layer insertSublayer:btnGradient atIndex:0];
         
         // Round button corners
+        [btn.layer setCornerRadius:6.0f];
+       
         
-        [btn.layer setCornerRadius:8.0f];
-        btn.clipsToBounds = TRUE;
         
-        
-        // Apply a 1 pixel, black border around Buy Button
+        //border
         [btn.layer setBorderWidth:2.0f];
-        [btn.layer setBorderColor:[[self.colorsModel secondaryOutline] CGColor]];
-
+        [btn.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+        //shadow
+        btn.layer.shadowRadius = 2;
+        [btn.layer setShadowOffset:CGSizeMake(1, 1)];
+        [btn.layer setShadowOpacity:1];
     }
 
     
     //buttons to delete options C,D
     for(UIButton *btn in self.deleteButtonSet) {
-        [btn.layer setCornerRadius:12.0f];
- 
+        UIImage *btnImage = [UIImage imageNamed:@"deleteSign.png"];
+        [btn setImage:btnImage forState:UIControlStateNormal];
+        
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
         [btn.titleLabel setFont:[UIFont fontWithName:@"Orienta" size:16.0f]];
+
+        //draw a custom gradient
+        CAGradientLayer *btnGradient = [CAGradientLayer layer];
+        btnGradient.frame = btn.bounds;
+        btnGradient.colors = [NSArray arrayWithObjects:
+                              (id)[[self.colorsModel deleteButtonTopColor] CGColor],
+                              (id)[[self.colorsModel deleteButtonBottomColor] CGColor],
+                              (id)[[self.colorsModel deleteButtonTopColor] CGColor],
+                              nil];
+        [btnGradient setCornerRadius:6.0f];
+        [btn.layer insertSublayer:btnGradient atIndex:0];
+        
+        // Round button corners
+        [btn.layer setCornerRadius:6.0f];
+
         
         //border
         [btn.layer setBorderWidth:2.0f];
         [btn.layer setBorderColor:[[UIColor whiteColor] CGColor]];
-        
+
         //shadow
         btn.layer.shadowRadius = 2;
         [btn.layer setShadowOffset:CGSizeMake(1, 1)];
@@ -464,14 +518,20 @@ NSMutableArray *finalAnswerKey;
 
 
 - (IBAction)makeGame:(UIButton *)sender {
-    NSLog(@"Questions: %@; Answers: %@; Title: %@", self.finalQuestionSet, self.finalAnswerKey, self.gameTitle);
-    Game *newGame = [Game createGameWithTitle:self.gameTitle
-                                       Course:@"Test"
-                                    Questions:self.finalQuestionSet
-                                      Answers:self.finalAnswerKey
-                                andGameLength:100];
-    [self.gamesToAddToo addGame:newGame];
-    [self.navigationController popViewControllerAnimated:YES];
+    if([self.finalAnswerKey count] >= 1) {
+        [self performSegueWithIdentifier: @"reviewGame" sender: self];
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please save at least one question before creating game." message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    Game *newGame = [[Game alloc]init];
+    newGame = [Game createGameWithTitle:self.gameTitle
+                                 Course:self.courseName
+                              Questions:self.finalQuestionSet
+                                Answers:self.finalAnswerKey
+                          andGameLength:self.gameLength];
+    [self.gamesToAddTo addGame:newGame];
 }
 
 - (IBAction)saveQuestion:(UIButton *)sender {
@@ -538,16 +598,25 @@ NSMutableArray *finalAnswerKey;
 }
 
 - (IBAction)backButton:(UIBarButtonItem *)sender {
-    if(questionNumber == 1){
-        //do nothing
-    }
-    else {
+    if(questionNumber != 1){
         int prevOptions = [[self.tempQuestionSet objectAtIndex:questionNumber -1] count]-1;
         questionNumber --;
         int options = [[self.tempQuestionSet objectAtIndex:questionNumber -1] count]-1;
         [self designScreenWithNumberOfOptions:options fromNumberOfOptions:prevOptions];
         [self designTextViews];
         [self designButtons];
+        //adds text to boxes that have been filled out
+        for(int i = 0; i <= options; i++) {
+            UITextView *textView = [self.formTextViewSet objectAtIndex:i];
+            NSString *text = [[self.tempQuestionSet objectAtIndex:questionNumber-1] objectAtIndex:i];
+            if(![text isEqualToString:@""]) {
+                textView.text = text;
+                textView.textColor = [UIColor blackColor];
+            }
+        }
+        //adds text to correct answer box
+        correctResponse.text = [self.tempAnswerKey objectAtIndex:questionNumber-1];
+        correctResponse.textColor = [UIColor blackColor];
     }
 }
 
@@ -564,11 +633,18 @@ NSMutableArray *finalAnswerKey;
             [self designTextViews];
             [self designButtons];
             
-            //fills out text views
+            //fills in text views
             for(int i = 0; i <= options; i++) {
-                
+                UITextView *textView = [self.formTextViewSet objectAtIndex:i];
+                NSString *text = [[self.tempQuestionSet objectAtIndex:questionNumber-1] objectAtIndex:i];
+                if(![text isEqualToString:@""]) {
+                    textView.text = text;
+                    textView.textColor = [UIColor blackColor];
+                }
             }
-        }
+            //adds text to correct answer box
+            correctResponse.text = [self.tempAnswerKey objectAtIndex:questionNumber-1];
+            correctResponse.textColor = [UIColor blackColor];        }
         else{
             //adds to temp question/answer set
             NSMutableArray *tempQuestion = [[NSMutableArray alloc] initWithObjects:@"", @"", @"", nil];
@@ -580,11 +656,6 @@ NSMutableArray *finalAnswerKey;
             [self designTextViews];
             [self designButtons];
             
-            //fills out text views
-            for(int i = 0; i <= 2; i++) {
-                //UITextView *textView = [self.formTextViewSet objectAtIndex:i];
-                //textView.text =
-            }
             //adds option number to array that tracks all the option numbers
             [self.optionNumbers addObject: [NSNumber numberWithInt:2]];
         }
@@ -593,6 +664,21 @@ NSMutableArray *finalAnswerKey;
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please complete and save this question before adding another one." message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }
+}
+
+- (IBAction)exit:(id)sender {
+    formTextViewSet = nil;
+    bottomButtonSet = nil;
+    lettersForNumbers = nil;
+    deleteButtonSet = nil;
+    addButtonSet = nil;
+    self.gameTitle = nil;
+    self.optionNumbers = nil;
+    self.tempAnswerKey = nil;
+    self.tempQuestionSet = nil;
+    self.finalAnswerKey = nil;
+    self.finalQuestionSet = nil;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
