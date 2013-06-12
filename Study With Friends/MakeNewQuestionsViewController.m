@@ -166,6 +166,7 @@ NSArray *addButtonSet;
     [self.tempQuestionSet addObject: tempQuestion];
     [self.tempAnswerKey addObject: @""];
     self.gameCreated = NO;
+    questionNumber = 1;
 }
 
 - (void)viewDidAppear:(BOOL)animated
